@@ -1,8 +1,21 @@
-import { type PropsWithChildren } from 'react';
-import { Context, defaultValues, type ConfigProviderProps } from './context';
+import { type PropsWithChildren, useLayoutEffect } from 'react';
+import { Context, defaultValues, setThemeColor, type ConfigProviderProps } from './context';
 
-function ConfigProvider({ children, ...props }: ConfigProviderProps & PropsWithChildren) {
-	return <Context.Provider value={{ ...defaultValues, ...props }}>{children}</Context.Provider>;
+function ConfigProvider({
+	children,
+	primaryColor = 'blue',
+	themeScope,
+	...props
+}: ConfigProviderProps & PropsWithChildren) {
+	useLayoutEffect(() => {
+		setThemeColor(primaryColor, themeScope);
+	}, [primaryColor, themeScope]);
+
+	return (
+		<Context.Provider value={{ ...defaultValues, primaryColor, ...props }}>
+			{children}
+		</Context.Provider>
+	);
 }
 
 export default ConfigProvider;
