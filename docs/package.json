@@ -1,0 +1,28 @@
+{
+	"name": "@rinex-ui/docs",
+	"version": "0.0.1",
+	"description": "",
+	"scripts": {
+		"dev": "rspress dev",
+		"build": "rspress build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.13.1",
+	"devDependencies": {
+		"@rspress/core": "^2.0.3",
+		"@rspress/plugin-preview": "^2.0.3",
+		"@tailwindcss/postcss": "^4.2.1",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"autoprefixer": "^10.4.24",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^3.4.19",
+		"rinex-ui": "workspace:*"
+	},
+	"dependencies": {
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4"
+	}
+}

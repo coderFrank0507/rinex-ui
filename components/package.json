@@ -1,0 +1,37 @@
+{
+	"name": "rinex-ui",
+	"version": "0.0.1",
+	"description": "A React UI library",
+	"keywords": [
+		"rinex-ui",
+		"ui"
+	],
+	"repository": "https://github.com/coderFrank0507/rinex-ui",
+	"author": "Frank",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup"
+	},
+	"packageManager": "pnpm@10.13.1",
+	"peerDependencies": {
+		"react": ">=18.2.0",
+		"react-dom": ">=18.2.0"
+	},
+	"dependencies": {
+		"tailwind-merge": "^3.5.0",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1"
+	},
+	"devDependencies": {
+		"tsup": "^8.5.1",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3"
+	}
+}
