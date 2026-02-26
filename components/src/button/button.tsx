@@ -6,7 +6,7 @@ import type { VariantProps } from 'class-variance-authority';
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-const spanPadding = {
+const spanPadding: Record<NonNullable<ButtonVariantProps['size']>, string> = {
 	small: 'px-2',
 	default: 'px-4',
 	large: 'px-6'
@@ -16,6 +16,12 @@ interface ButtonProps
 	extends PropsWithChildren, ButtonVariantProps, React.ComponentProps<'button'> {
 	className?: string;
 	danger?: boolean;
+}
+
+enum ButtonSize {
+	Small = 'small',
+	Default = 'default',
+	Large = 'large'
 }
 
 function Button({ children, variant, size, danger, className, ...props }: ButtonProps) {

@@ -1,13 +1,17 @@
+---
+pageType: doc
+---
+
 # Button 按钮
 ---
 
-**基础**
+#### 基础
 ```tsx preview
 import { Button } from 'rinex-ui';
 
 export default function App() {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       <Button variant="primary">Primary</Button> 
       <Button>Default</Button>
       <Button variant="dashed">Dashed</Button>
@@ -18,13 +22,13 @@ export default function App() {
 };
 ```
 
-**不同尺寸**
+#### 不同尺寸
 ```tsx preview
 import { Button } from 'rinex-ui';
 
 export default function App() {
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex flex-wrap gap-2 items-center">
       <Button size="large">Large</Button>
       <Button>Default</Button>
       <Button size="small">Small</Button>
@@ -33,13 +37,13 @@ export default function App() {
 };
 ```
 
-**危险按钮**
+#### 危险按钮
 ```tsx preview
 import { Button } from 'rinex-ui';
 
 export default function App() {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       <Button danger variant="primary">Primary</Button>
       <Button danger>Default</Button>
       <Button danger variant="dashed">Dashed</Button>
