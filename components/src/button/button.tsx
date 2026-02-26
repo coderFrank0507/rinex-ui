@@ -6,39 +6,45 @@ import type { VariantProps } from 'class-variance-authority';
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-const spanPadding: Record<NonNullable<ButtonVariantProps['size']>, string> = {
-	small: 'px-2',
-	default: 'px-4',
-	large: 'px-6'
-};
+interface ButtonSize {
+	large: string;
+	default: string;
+	small: string;
+}
 
 interface ButtonProps
 	extends PropsWithChildren, ButtonVariantProps, React.ComponentProps<'button'> {
 	className?: string;
 	danger?: boolean;
+	size?: keyof ButtonSize;
+	icon?: React.ReactNode;
 }
 
-enum ButtonSize {
-	Small = 'small',
-	Default = 'default',
-	Large = 'large'
-}
-
-function Button({ children, variant, size, danger, className, ...props }: ButtonProps) {
+function Button({ children, variant, size, danger, className, icon, ...props }: ButtonProps) {
 	const { size: contextSize } = useContext(Context);
 
 	const buttonSize = useMemo(() => size || contextSize, [size, contextSize]);
+	// const contentPadding = useMemo(() => {
+	// 	if (icon && !children) {
+	// 		return 'size-8 p-0';
+	// 	}
+	// }, [icon, children]);
 
 	return (
 		<button
-			className={cn(buttonVariants({ variant, size: buttonSize, danger, className }))}
+			className={cn(
+				buttonVariants({
+					variant,
+					danger,
+					size: buttonSize,
+					onlyIcon: !!(icon && !children),
+					className
+				})
+			)}
 			{...props}
 		>
-			<span
-				className={cn('inline-flex items-center size-full', spanPadding[buttonSize || 'default'])}
-			>
-				{children}
-			</span>
+			{icon}
+			{children}
 		</button>
 	);
 }

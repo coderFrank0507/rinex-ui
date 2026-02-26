@@ -22,16 +22,18 @@ export default function App() {
 };
 ```
 
-#### 不同尺寸
+#### 禁用状态
 ```tsx preview
 import { Button } from 'rinex-ui';
 
 export default function App() {
   return (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button size="large">Large</Button>
-      <Button>Default</Button>
-      <Button size="small">Small</Button>
+    <div className="flex flex-wrap gap-2">
+      <Button disabled variant="primary">Primary</Button>
+      <Button disabled>Default</Button>
+      <Button disabled variant="dashed">Dashed</Button>
+      <Button disabled variant="text">Text</Button>
+      <Button disabled variant="link">Link</Button>
     </div>
   );
 };
@@ -49,6 +51,78 @@ export default function App() {
       <Button danger variant="dashed">Dashed</Button>
       <Button danger variant="text">Text</Button>
       <Button danger variant="link">Link</Button>
+    </div>
+  );
+};
+```
+
+#### 不同尺寸
+```tsx preview
+import { Button } from 'rinex-ui';
+
+export default function App() {
+  return (
+    <div className="flex flex-wrap gap-2 items-center">
+      <Button size="large">Large</Button>
+      <Button>Default</Button>
+      <Button size="small">Small</Button>
+    </div>
+  );
+};
+```
+
+#### 图标按钮
+```tsx preview
+import { Button } from 'rinex-ui';
+import { Github } from 'lucide-react';
+
+export default function App() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button icon={<Github size={18} />} className="rounded-full" />
+      <Button variant="primary" icon={<Github size={18} />} />
+      <Button icon={<Github size={18} />}>Github</Button>
+      <Button variant="primary" icon={<Github size={18} />} className="rounded-full">Github</Button>
+    </div>
+  );
+};
+```
+
+#### 加载状态
+```tsx preview
+import { useState, useEffect } from 'react';
+import { Button } from 'rinex-ui';
+import { LoaderCircle, Github } from 'lucide-react';
+
+export default function App() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [loading]);
+  
+  return (
+    <div>
+      <div className="border-b pb-2 mb-2">
+        <Button variant="primary" className="w-full" onClick={() => setLoading(true)}>
+          Loading
+        </Button>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          icon={loading ?
+                <LoaderCircle className="animate-spin" size={18} /> :
+                <Github size={18} />}
+        />
+        <Button>
+          {loading && <LoaderCircle className="animate-spin" size={18} />}
+          Loading
+        </Button>
+      </div>
     </div>
   );
 };

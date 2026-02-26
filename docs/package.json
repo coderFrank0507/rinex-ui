@@ -18,10 +18,11 @@
 		"@types/react-dom": "^19.2.3",
 		"autoprefixer": "^10.4.24",
 		"postcss": "^8.5.6",
-		"tailwindcss": "^3.4.19",
-		"rinex-ui": "workspace:*"
+		"rinex-ui": "workspace:*",
+		"tailwindcss": "^3.4.19"
 	},
 	"dependencies": {
+		"lucide-react": "^0.575.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4"
 	}
