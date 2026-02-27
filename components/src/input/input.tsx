@@ -15,6 +15,7 @@ const Input = forwardRef(({ className, onChange, ...props }: InputProps, ref) =>
 	const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		setValue('');
 		if (inputRef.current) {
+			inputRef.current.value = '';
 			resolveOnChange(inputRef.current, event, onChange);
 		}
 	};
