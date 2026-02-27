@@ -1,8 +1,8 @@
-import React, { useContext, useMemo, type PropsWithChildren } from 'react';
+import React, { useMemo, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
 import { buttonVariants } from './variants';
-import { Context } from '../config-provider';
 import type { VariantProps } from 'class-variance-authority';
+import { useConfigContext } from '../_utils/hooks';
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
@@ -12,8 +12,8 @@ interface ButtonProps
 	danger?: boolean;
 }
 
-function Button({ children, variant, size, danger, className, ...props }: ButtonProps) {
-	const { size: contextSize } = useContext(Context);
+const Button = ({ children, variant, size, danger, className, ...props }: ButtonProps) => {
+	const { size: contextSize } = useConfigContext();
 
 	const buttonSize = useMemo(() => size || contextSize, [size, contextSize]);
 
@@ -35,6 +35,6 @@ function Button({ children, variant, size, danger, className, ...props }: Button
 			{children}
 		</button>
 	);
-}
+};
 
 export default Button;

@@ -12,12 +12,15 @@ export const colors: Record<ThemeColors, string> = {
 	violet: '#8023ff'
 };
 
-export function setThemeColor(primaryColor: ThemeColors, container?: HTMLElement) {
+export let hasSetThemeColor = false;
+export function setThemeColor(primaryColor: ThemeColors = 'blue', container?: HTMLElement) {
 	const color = isHexColor(primaryColor) ? primaryColor : (colors[primaryColor] ?? '#1447e6');
 	themeColorChange(color, container);
+	hasSetThemeColor = true;
 }
 
 interface ConfigProviderProps {
+	__used__?: boolean;
 	size?: 'lg' | 'default' | 'sm';
 	/**
 	 * 主题色，内置 blue | green | neutral | orange | rose | violet 默认：blue
@@ -31,10 +34,11 @@ interface ConfigProviderProps {
 }
 
 export const defaultValues: ConfigProviderProps = {
+	__used__: false,
 	size: 'default',
 	primaryColor: 'blue'
 };
 
-export const Context = createContext(defaultValues);
+export const Context = createContext<ConfigProviderProps>({ __used__: false });
 
 export type { ConfigProviderProps };

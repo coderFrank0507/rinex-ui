@@ -31,8 +31,27 @@ export function isHexColor(str: string) {
 	return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(str);
 }
 
+const levels = [1, 0.8, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05];
+
+export function setTargetColor(hex: string, container: HTMLElement) {
+	hex = hex.replace('#', '');
+
+	if (hex.length === 3) {
+		hex = hex
+			.split('')
+			.map((c) => c + c)
+			.join('');
+	}
+
+	const r = parseInt(hex.slice(0, 2), 16);
+	const g = parseInt(hex.slice(2, 4), 16);
+	const b = parseInt(hex.slice(4, 6), 16);
+	levels.forEach((a, i) => {
+		container.style.setProperty(`--ru-primary-color-${i + 1}`, `rgba(${r}, ${g}, ${b}, ${a})`);
+	});
+}
+
 export function themeColorChange(hex: string, container?: HTMLElement) {
-	const levels = [1, 0.8, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05];
 	hex = hex.replace('#', '');
 
 	if (hex.length === 3) {
@@ -51,12 +70,17 @@ export function themeColorChange(hex: string, container?: HTMLElement) {
 			container.style.setProperty(`--ru-primary-color-${i + 1}`, `rgba(${r}, ${g}, ${b}, ${a})`);
 		});
 	} else {
-		const styleEl = document.createElement('style');
+		let rinexUIStyle = document.querySelector('style[data-from="rinex-ui"]');
+		const isExist = !!rinexUIStyle;
+		if (!rinexUIStyle) {
+			rinexUIStyle = document.createElement('style');
+			rinexUIStyle.setAttribute('data-from', 'rinex-ui');
+		}
 		const content = levels.reduce((pre, cur, i) => {
 			pre += `--ru-primary-color-${i + 1}: rgba(${r}, ${g}, ${b}, ${cur});\n`;
 			return pre;
 		}, '');
-		styleEl.textContent = `:root {${content}}`;
-		document.head.appendChild(styleEl);
+		rinexUIStyle.textContent = `:root {${content}}`;
+		if (!isExist) document.head.appendChild(rinexUIStyle);
 	}
 }
