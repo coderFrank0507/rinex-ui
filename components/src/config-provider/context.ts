@@ -18,10 +18,9 @@ export function setThemeColor(primaryColor: ThemeColors, container?: HTMLElement
 }
 
 interface ConfigProviderProps {
-	theme?: 'light' | 'dark';
-	size?: 'small' | 'default' | 'large';
+	size?: 'lg' | 'default' | 'sm';
 	/**
-	 * 主题色，内置 blue | green | neutral | orange | rose | violet | yellow 默认：blue
+	 * 主题色，内置 blue | green | neutral | orange | rose | violet 默认：blue
 	 * 可自定义 16进制色值
 	 */
 	primaryColor?: ThemeColors;
@@ -32,7 +31,6 @@ interface ConfigProviderProps {
 }
 
 export const defaultValues: ConfigProviderProps = {
-	theme: 'light',
 	size: 'default',
 	primaryColor: 'blue'
 };
