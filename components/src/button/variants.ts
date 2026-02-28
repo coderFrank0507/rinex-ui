@@ -13,7 +13,7 @@ export const buttonVariants = cva(
 				link: 'text-[var(--ru-primary-color-1)] underline-offset-4 hover:underline hover:bg-transparent'
 			},
 			size: {
-				lg: 'h-10 px-4',
+				lg: 'h-10 px-4 text-lg',
 				default: 'h-8 px-3',
 				sm: 'h-6 px-2 text-sm',
 				icon: 'size-8',

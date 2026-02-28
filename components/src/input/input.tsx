@@ -1,55 +1,60 @@
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { inputVariants } from './variants';
-import CloseIcon from '../_public/icon/close';
-import { resolveOnChange } from './utils';
 import { cn } from '../_utils';
+import { X } from 'lucide-react';
+import { type BaseInputProps, type BaseInputRef, BaseInput } from './base-input';
+import { InputContext } from './context';
+import { InputPrefixOrSuffix } from './input-slot';
 
-interface InputProps extends React.ComponentProps<'input'> {
-	className?: string;
+interface InputProps extends BaseInputProps {
+	allowClear?: boolean;
+	prefix?: React.ReactNode;
+	suffix?: React.ReactNode;
 }
 
-const Input = forwardRef(({ className, onChange, ...props }: InputProps, ref) => {
-	const [value, setValue] = useState('');
-	const inputRef = useRef<HTMLInputElement>(null);
+const Input = forwardRef((inputProps: InputProps, ref) => {
+	const { className, allowClear, prefix, suffix, ...props } = inputProps;
 
-	const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		setValue('');
-		if (inputRef.current) {
-			inputRef.current.value = '';
-			resolveOnChange(inputRef.current, event, onChange);
+	const [showClearIcon, setShowClearIcon] = useState(false);
+	const baseInputRef = useRef<BaseInputRef>(null);
+
+	useEffect(() => {
+		if (allowClear) {
+			queueMicrotask(() => {
+				setShowClearIcon(Boolean(props.value));
+			});
 		}
-	};
+	}, [allowClear, props.value]);
 
-	const triggerChange = (e: React.ChangeEvent<HTMLInputElement>, currentValue: string) => {
-		setValue(currentValue);
+	if (allowClear || prefix || suffix) {
+		const clearIcon = showClearIcon && (
+			<button
+				type="button"
+				tabIndex={-1}
+				className={cn('pl-1', !suffix && 'pr-2')}
+				onClick={(e) => baseInputRef.current?.handleReset(e)}
+			>
+				<X className="cursor-pointer size-4 opacity-50" />
+			</button>
+		);
 
-		if (inputRef.current) {
-			resolveOnChange(inputRef.current, e, onChange, currentValue);
-		}
-	};
+		return (
+			<InputContext.Provider value={{ size: props.size, disabled: props.disabled }}>
+				<div
+					tabIndex={props.disabled ? -1 : 0}
+					data-slot="input"
+					className={cn(inputVariants({ size: props.size, disabled: props.disabled, className }))}
+				>
+					{prefix && <InputPrefixOrSuffix>{prefix}</InputPrefixOrSuffix>}
+					<BaseInput ref={ref} baseInputRef={baseInputRef} {...props} />
+					{clearIcon}
+					{suffix && <InputPrefixOrSuffix>{suffix}</InputPrefixOrSuffix>}
+				</div>
+			</InputContext.Provider>
+		);
+	}
 
-	const clearIcon = value && (
-		<button type="button" tabIndex={-1} onClick={handleReset}>
-			<CloseIcon className="cursor-pointer size-4" />
-		</button>
-	);
-
-	return (
-		<div tabIndex={0} data-slot="input" className={cn(inputVariants({ className }))}>
-			<input
-				data-slot="input-dom"
-				className="size-full bg-transparent outline-none"
-				ref={(node) => {
-					inputRef.current = node;
-					if (typeof ref === 'function') ref(node);
-					else if (ref) ref.current = node;
-				}}
-				{...props}
-				onChange={(e) => triggerChange(e, e.target.value)}
-			/>
-			{clearIcon}
-		</div>
-	);
+	return <BaseInput base ref={ref} baseInputRef={baseInputRef} {...props} />;
 });
 
 export default Input;
