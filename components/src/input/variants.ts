@@ -1,26 +1,26 @@
 import { cva } from 'class-variance-authority';
 
-export const baseInputVariants = cva('w-full outline-none', {
-	variants: {
-		size: {
-			lg: 'h-full text-lg',
-			default: 'h-8',
-			sm: 'h-6 text-sm'
+export const baseInputVariants = cva(
+	'w-full outline-none disabled:bg-transparent transition disabled:cursor-not-allowed',
+	{
+		variants: {
+			size: {
+				lg: 'h-full text-lg',
+				default: 'h-8',
+				sm: 'h-6 text-sm'
+			},
+			base: {
+				true: 'px-2 rounded-md border hover:border-[var(--ru-primary-color-1)] focus:border-[var(--ru-primary-color-1)] focus:ring-2 focus:ring-[var(--ru-primary-color-8)]'
+			}
 		},
-		base: {
-			true: 'px-2 rounded-lg border hover:border-[var(--ru-primary-color-1)] focus:border-[var(--ru-primary-color-1)] focus:ring-2 focus:ring-[var(--ru-primary-color-7)]'
-		},
-		disabled: {
-			true: 'hover:border-inherit focus:border-inherit focus:ring-0 text-gray-400 cursor-not-allowed'
+		defaultVariants: {
+			size: 'default'
 		}
-	},
-	defaultVariants: {
-		size: 'default'
 	}
-});
+);
 
 export const inputVariants = cva(
-	'w-full border rounded-lg overflow-hidden flex justify-between items-center hover:border-[var(--ru-primary-color-1)] focus-within:border-[var(--ru-primary-color-1)] focus-within:ring-2 focus-within:ring-[var(--ru-primary-color-7)]',
+	'w-full border rounded-md overflow-hidden flex justify-between items-center transition hover:border-[var(--ru-primary-color-1)] focus-within:border-[var(--ru-primary-color-1)] focus-within:ring-2 focus-within:ring-[var(--ru-primary-color-8)]',
 	{
 		variants: {
 			size: {

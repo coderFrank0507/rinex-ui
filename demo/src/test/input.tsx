@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Input } from 'rinex-ui';
 // import { Input } from "antd";
-import { User } from 'lucide-react';
+import { User, Search } from 'lucide-react';
 
 export default function InputTest() {
 	const [value, setValue] = useState('');
 
 	return (
-		<div className="flex flex-col gap-2 border p-2">
+		<div className="flex flex-col gap-4">
 			<Input
 				allowClear
-				// disabled
+				disabled
 				value={value}
 				prefix={<User />}
-				suffix={<User />}
+				suffix={<Search />}
 				placeholder="Input"
 				size="lg"
 				onChange={(e) => {
@@ -22,9 +22,9 @@ export default function InputTest() {
 			/>
 			<Input
 				value={value}
-				// disabled
+				allowClear
+				readOnly
 				prefix={<User />}
-				suffix={<User />}
 				placeholder="Input"
 				onChange={(e) => {
 					setValue(e.target.value);

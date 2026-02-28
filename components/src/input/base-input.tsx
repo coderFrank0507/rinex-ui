@@ -1,9 +1,8 @@
-import { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { baseInputVariants } from './variants';
 import { cn } from '../_utils';
 import { type VariantProps } from 'class-variance-authority';
 import { resolveOnChange } from './utils';
-import { InputContext } from './context';
 
 type InputVariantProps = VariantProps<typeof baseInputVariants>;
 
@@ -28,8 +27,6 @@ export const BaseInput = forwardRef((props: BaseInputProps & BaseInputExtend, re
 	const { className, size, onChange, baseInputRef, base = false, ...inputProps } = props;
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const context = useContext(InputContext);
-
 	const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		if (inputRef.current) {
 			inputRef.current.value = '';
@@ -49,9 +46,9 @@ export const BaseInput = forwardRef((props: BaseInputProps & BaseInputExtend, re
 
 	return (
 		<input
-			tabIndex={props.disabled ? -1 : 0}
+			tabIndex={props.disabled || props.readOnly ? -1 : 0}
 			data-slot="input"
-			className={cn(baseInputVariants({ base, size, disabled: props.disabled, className }))}
+			className={cn(baseInputVariants({ base, size, className }))}
 			ref={(node) => {
 				inputRef.current = node;
 				if (typeof ref === 'function') ref(node);

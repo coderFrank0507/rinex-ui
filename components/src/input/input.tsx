@@ -27,7 +27,7 @@ const Input = forwardRef((inputProps: InputProps, ref) => {
 	}, [allowClear, props.value]);
 
 	if (allowClear || prefix || suffix) {
-		const clearIcon = showClearIcon && (
+		const clearIcon = showClearIcon && !props.disabled && !props.readOnly && (
 			<button
 				type="button"
 				tabIndex={-1}
@@ -39,9 +39,9 @@ const Input = forwardRef((inputProps: InputProps, ref) => {
 		);
 
 		return (
-			<InputContext.Provider value={{ size: props.size, disabled: props.disabled }}>
+			<InputContext.Provider value={{ size: props.size }}>
 				<div
-					tabIndex={props.disabled ? -1 : 0}
+					tabIndex={props.disabled || props.readOnly ? -1 : 0}
 					data-slot="input"
 					className={cn(inputVariants({ size: props.size, disabled: props.disabled, className }))}
 				>
