@@ -8,18 +8,19 @@ export default function InputTest() {
 
 	return (
 		<div className="flex flex-col gap-4">
+			<Input placeholder="请输入" />
 			<Input
 				allowClear
 				// disabled
 				size="lg"
 				value={value}
 				prefix={
-					<InputSlot className="bg-gray-100 mr-2">
+					<InputSlot>
 						<User />
 					</InputSlot>
 				}
 				suffix={
-					<InputSlot className="bg-gray-100">
+					<InputSlot className="bg-gray-100 dark:bg-gray-700 ml-2">
 						<Search />
 					</InputSlot>
 				}

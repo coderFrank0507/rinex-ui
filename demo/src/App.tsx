@@ -8,18 +8,20 @@ function App() {
 	const [color, setColor] = useState('green');
 
 	return (
-		<ConfigProvider primaryColor={color}>
-			<div className="p-10 space-y-4">
-				<div className="flex gap-4">
-					<Button onClick={() => setColor('blue')}>Blue</Button>
-					<Button onClick={() => setColor('green')}>Green</Button>
-					<Button onClick={() => setColor('neutral')}>Neutral</Button>
+		<div className="dark:bg-[#141414]">
+			<ConfigProvider primaryColor={color}>
+				<div className="p-10 space-y-4">
+					<div className="flex gap-4">
+						<Button onClick={() => setColor('blue')}>Blue</Button>
+						<Button onClick={() => setColor('green')}>Green</Button>
+						<Button onClick={() => setColor('violet')}>Violet</Button>
+					</div>
+					<ButtonTest />
+					<InputTest />
+					<ColorTest />
 				</div>
-				<ButtonTest />
-				<InputTest />
-				<ColorTest />
-			</div>
-		</ConfigProvider>
+			</ConfigProvider>
+		</div>
 	);
 }
 

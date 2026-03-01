@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const baseInputVariants = cva(
-	'w-full outline-none disabled:bg-transparent transition disabled:cursor-not-allowed',
+	'w-full outline-none placeholder:text-gray-400 dark:text-zinc-100 disabled:bg-transparent transition disabled:cursor-not-allowed border-gray-300 dark:placeholder:text-gray-500 dark:focus:border-[var(--ru-primary-color-1)]',
 	{
 		variants: {
 			size: {
@@ -20,7 +20,7 @@ export const baseInputVariants = cva(
 );
 
 export const inputVariants = cva(
-	'w-full border rounded-md overflow-hidden flex justify-between items-center transition hover:border-[var(--ru-primary-color-1)] focus-within:border-[var(--ru-primary-color-1)] focus-within:ring-2 focus-within:ring-[var(--ru-primary-color-8)]',
+	'w-full border rounded-md overflow-hidden flex justify-between items-center transition hover:border-[var(--ru-primary-color-1)] focus-within:border-[var(--ru-primary-color-1)] focus-within:ring-2 focus-within:ring-[var(--ru-primary-color-8)] border-gray-300 dark:text-zinc-100',
 	{
 		variants: {
 			size: {

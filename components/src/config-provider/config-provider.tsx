@@ -1,10 +1,10 @@
 import { type PropsWithChildren, useId } from 'react';
 import { ConfigContext, type ConfigProviderProps } from './context';
-import { useThemeCSS } from '../_utils/theme';
+import { colorMap, useThemeCSS } from '../_utils/theme';
 
 function ConfigProvider({
 	children,
-	primaryColor = 'blue',
+	primaryColor = colorMap.blue,
 	...props
 }: ConfigProviderProps & PropsWithChildren) {
 	const id = useId();

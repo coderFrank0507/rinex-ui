@@ -53,12 +53,11 @@ export function setTargetColor(hex: string, container: HTMLElement) {
 	});
 }
 
-export type ThemeColors = 'blue' | 'green' | 'neutral' | 'orange' | 'rose' | 'violet' | string;
+export type ThemeColors = 'blue' | 'green' | 'orange' | 'rose' | 'violet' | (string & {});
 
-const colors: Record<ThemeColors, string> = {
+export const colorMap: Record<ThemeColors, string> = {
 	blue: '#1447e6',
 	green: '#5ea600',
-	neutral: '#171717',
 	orange: '#f64900',
 	rose: '#ed0040',
 	violet: '#8023ff'
@@ -82,10 +81,12 @@ export function initGlobalThemeColor() {
 	hasInitGlobalThemeColor = true;
 }
 
-export function useThemeCSS(id: string, primaryColor: string) {
+export function useThemeCSS(id: string, primaryColor: ThemeColors) {
 	const className = `ru-theme-${id}`;
 	const cssVariables = useMemo(() => {
-		const color = isHexColor(primaryColor) ? primaryColor : (colors[primaryColor] ?? '#1447e6');
+		const color = isHexColor(primaryColor)
+			? primaryColor
+			: (colorMap[primaryColor] ?? colorMap.blue);
 
 		let hex = color.replace('#', '');
 
