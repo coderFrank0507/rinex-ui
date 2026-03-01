@@ -5,10 +5,9 @@ export default defineConfig({
 		// @see: https://commitlint.js.org/#/reference-rules
 	},
 	extends: ['@commitlint/config-conventional'],
-	useEmoji: true,
 	prompt: {
 		alias: { fd: 'docs: fix typos' },
-		format: '{type}{scope}: {emoji}{subject}',
+		useEmoji: true,
 		messages: {
 			type: '选择你要提交的变更类型:',
 			scope: '选择变更范围 (可选):',

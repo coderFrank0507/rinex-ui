@@ -9,11 +9,11 @@
 		"lint": "eslint .",
 		"spell": "cspell \"{components,docs}/**/*\"",
 		"prepare": "husky",
-		"commit": "cz"
+		"commit": "git-cz"
 	},
 	"config": {
 		"commitizen": {
-			"path": "cz-git"
+			"path": "node_modules/cz-git"
 		}
 	},
 	"packageManager": "pnpm@10.13.1",
