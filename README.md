@@ -14,8 +14,8 @@ npm add rinex-ui
 // tailwind.config.js
 module.exports = {
   content: [
-		*// ... other content files,*
-		'./node_modules/rinex-ui/**/*.{js,jsx,ts,tsx}',
+    // ... other content files,
+    './node_modules/rinex-ui/**/*.{js,jsx,ts,tsx}',
   ],
 }
 ```
