@@ -5,6 +5,7 @@ export default defineConfig({
 		// @see: https://commitlint.js.org/#/reference-rules
 	},
 	extends: ['@commitlint/config-conventional'],
+	useEmoji: true,
 	prompt: {
 		alias: { fd: 'docs: fix typos' },
 		format: '{type}{scope}: {emoji}{subject}',
@@ -32,6 +33,5 @@ export default defineConfig({
 			{ value: 'chore', name: 'chore:   🔨 构建过程、辅助工具变更', emoji: ':wrench:' },
 			{ value: 'revert', name: 'revert:   ⏪ 回滚到上一个提交', emoji: ':rewind:' }
 		]
-	},
-	useEmoji: true
+	}
 });

@@ -1,6 +1,7 @@
 {
 	"name": "rinex-ui-root",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev:ui": "pnpm --filter rinex-ui dev",
 		"dev:docs": "pnpm --filter @rinex-ui/docs dev",
