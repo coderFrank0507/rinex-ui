@@ -1,5 +1,4 @@
 import { createContext } from 'react';
-import { isHexColor, themeColorChange } from '../_utils/theme';
 
 type ThemeColors = 'blue' | 'green' | 'neutral' | 'orange' | 'rose' | 'violet' | string;
 
@@ -12,13 +11,6 @@ export const colors: Record<ThemeColors, string> = {
 	violet: '#8023ff'
 };
 
-export let hasSetThemeColor = false;
-export function setThemeColor(primaryColor: ThemeColors = 'blue', container?: HTMLElement) {
-	const color = isHexColor(primaryColor) ? primaryColor : (colors[primaryColor] ?? '#1447e6');
-	themeColorChange(color, container);
-	hasSetThemeColor = true;
-}
-
 interface ConfigProviderProps {
 	__used__?: boolean;
 	size?: 'lg' | 'default' | 'sm';
@@ -27,10 +19,6 @@ interface ConfigProviderProps {
 	 * 可自定义 16进制色值
 	 */
 	primaryColor?: ThemeColors;
-	/**
-	 * 主题作用域，默认：document.head
-	 */
-	themeScope?: HTMLElement;
 }
 
 export const defaultValues: ConfigProviderProps = {
@@ -39,6 +27,6 @@ export const defaultValues: ConfigProviderProps = {
 	primaryColor: 'blue'
 };
 
-export const Context = createContext<ConfigProviderProps>({ __used__: false });
+export const ConfigContext = createContext<ConfigProviderProps>({ __used__: false });
 
 export type { ConfigProviderProps };

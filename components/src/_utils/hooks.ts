@@ -1,11 +1,12 @@
 import { useContext } from 'react';
-import { Context } from '../config-provider';
-import { defaultValues, hasSetThemeColor, setThemeColor } from '../config-provider/context';
+import { ConfigContext } from '../config-provider';
+import { defaultValues } from '../config-provider/context';
+import { hasInitGlobalThemeColor, initGlobalThemeColor } from './theme';
 
 export function useConfigContext() {
-	const config = useContext(Context);
-	if (!hasSetThemeColor && !config.__used__) {
-		setThemeColor();
+	const config = useContext(ConfigContext);
+	if (!hasInitGlobalThemeColor && !config.__used__) {
+		initGlobalThemeColor();
 	}
 	return { ...defaultValues, ...config };
 }

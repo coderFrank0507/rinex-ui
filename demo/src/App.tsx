@@ -10,7 +10,7 @@ function App() {
 	return (
 		<ConfigProvider primaryColor={color}>
 			<div className="p-10 space-y-4">
-				<div className="flex gap-4 mb-4">
+				<div className="flex gap-4">
 					<Button onClick={() => setColor('blue')}>Blue</Button>
 					<Button onClick={() => setColor('green')}>Green</Button>
 					<Button onClick={() => setColor('neutral')}>Neutral</Button>

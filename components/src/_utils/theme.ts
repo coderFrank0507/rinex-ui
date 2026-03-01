@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 //hex颜色转rgb颜色
 function HexToRgb(str: string) {
 	str = str.replace('#', '');
@@ -51,36 +53,58 @@ export function setTargetColor(hex: string, container: HTMLElement) {
 	});
 }
 
-export function themeColorChange(hex: string, container?: HTMLElement) {
-	hex = hex.replace('#', '');
+export type ThemeColors = 'blue' | 'green' | 'neutral' | 'orange' | 'rose' | 'violet' | string;
 
-	if (hex.length === 3) {
-		hex = hex
-			.split('')
-			.map((c) => c + c)
-			.join('');
+const colors: Record<ThemeColors, string> = {
+	blue: '#1447e6',
+	green: '#5ea600',
+	neutral: '#171717',
+	orange: '#f64900',
+	rose: '#ed0040',
+	violet: '#8023ff'
+};
+
+export let hasInitGlobalThemeColor = false;
+export function initGlobalThemeColor() {
+	if (hasInitGlobalThemeColor) return;
+	let rinexUIStyle = document.querySelector('style[data-token="ru-theme-variables"]');
+	const isExist = !!rinexUIStyle;
+	if (!rinexUIStyle) {
+		rinexUIStyle = document.createElement('style');
+		rinexUIStyle.setAttribute('data-token', 'ru-theme-variables');
 	}
+	const content = levels.reduce((pre, cur, i) => {
+		pre += `--ru-primary-color-${i + 1}:rgba(20,71,230,${cur});`;
+		return pre;
+	}, '');
+	rinexUIStyle.textContent = `:root{${content}}`;
+	if (!isExist) document.head.appendChild(rinexUIStyle);
+	hasInitGlobalThemeColor = true;
+}
 
-	const r = parseInt(hex.slice(0, 2), 16);
-	const g = parseInt(hex.slice(2, 4), 16);
-	const b = parseInt(hex.slice(4, 6), 16);
+export function useThemeCSS(id: string, primaryColor: string) {
+	const className = `ru-theme-${id}`;
+	const cssVariables = useMemo(() => {
+		const color = isHexColor(primaryColor) ? primaryColor : (colors[primaryColor] ?? '#1447e6');
 
-	if (container) {
-		levels.forEach((a, i) => {
-			container.style.setProperty(`--ru-primary-color-${i + 1}`, `rgba(${r}, ${g}, ${b}, ${a})`);
-		});
-	} else {
-		let rinexUIStyle = document.querySelector('style[data-from="rinex-ui"]');
-		const isExist = !!rinexUIStyle;
-		if (!rinexUIStyle) {
-			rinexUIStyle = document.createElement('style');
-			rinexUIStyle.setAttribute('data-from', 'rinex-ui');
+		let hex = color.replace('#', '');
+
+		if (hex.length === 3) {
+			hex = hex
+				.split('')
+				.map((c) => c + c)
+				.join('');
 		}
-		const content = levels.reduce((pre, cur, i) => {
-			pre += `--ru-primary-color-${i + 1}: rgba(${r}, ${g}, ${b}, ${cur});\n`;
+
+		const r = parseInt(hex.slice(0, 2), 16);
+		const g = parseInt(hex.slice(2, 4), 16);
+		const b = parseInt(hex.slice(4, 6), 16);
+
+		return levels.reduce((pre, cur, i) => {
+			pre += `--ru-primary-color-${i + 1}:rgba(${r},${g},${b},${cur});`;
 			return pre;
 		}, '');
-		rinexUIStyle.textContent = `:root {${content}}`;
-		if (!isExist) document.head.appendChild(rinexUIStyle);
-	}
+	}, [primaryColor]);
+
+	return { className, cssVariables };
 }

@@ -1,20 +1,22 @@
-import { type PropsWithChildren, useLayoutEffect } from 'react';
-import { Context, setThemeColor, type ConfigProviderProps } from './context';
+import { type PropsWithChildren, useId } from 'react';
+import { ConfigContext, type ConfigProviderProps } from './context';
+import { useThemeCSS } from '../_utils/theme';
 
 function ConfigProvider({
 	children,
 	primaryColor = 'blue',
-	themeScope,
 	...props
 }: ConfigProviderProps & PropsWithChildren) {
-	useLayoutEffect(() => {
-		setThemeColor(primaryColor, themeScope);
-	}, [primaryColor, themeScope]);
+	const id = useId();
+	const { className, cssVariables } = useThemeCSS(id, primaryColor);
 
 	return (
-		<Context.Provider value={{ __used__: true, primaryColor, ...props }}>
-			{children}
-		</Context.Provider>
+		<ConfigContext.Provider value={{ __used__: true, primaryColor, ...props }}>
+			<style data-token={`ru-theme-variables-${id}`}>{`.${className}{${cssVariables}}`}</style>
+			<div id={`ru-config-provider-${id}`} className={className}>
+				{children}
+			</div>
+		</ConfigContext.Provider>
 	);
 }
 

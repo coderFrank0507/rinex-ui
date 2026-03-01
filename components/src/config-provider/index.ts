@@ -1,5 +1,5 @@
-import ConfigProvider from "./config-provider";
-import { Context } from "./context";
+import ConfigProvider from './config-provider';
+import { ConfigContext } from './context';
 
-export { ConfigProvider, Context };
-export type { ConfigProviderProps } from "./context";
+export { ConfigProvider, ConfigContext };
+export type { ConfigProviderProps } from './context';
