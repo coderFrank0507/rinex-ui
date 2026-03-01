@@ -7,6 +7,7 @@ export default defineConfig({
 	extends: ['@commitlint/config-conventional'],
 	prompt: {
 		alias: { fd: 'docs: fix typos' },
+		format: '{type}{scope}: {emoji}{subject}',
 		messages: {
 			type: '选择你要提交的变更类型:',
 			scope: '选择变更范围 (可选):',
