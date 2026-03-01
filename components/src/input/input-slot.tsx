@@ -10,7 +10,7 @@ interface InputPrefixOrSuffix extends PropsWithChildren, InputPrefixVariantProps
 	className?: string;
 }
 
-export const InputPrefixOrSuffix = ({ children, size, className }: InputPrefixOrSuffix) => {
+export const InputSlot = ({ children, size, className }: InputPrefixOrSuffix) => {
 	const context = useContext(InputContext);
 	return (
 		<div className={cn(inputPrefixVariants({ size: size || context.size, className }))}>

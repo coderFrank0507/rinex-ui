@@ -4,7 +4,7 @@ import { cn } from '../_utils';
 import { X } from 'lucide-react';
 import { type BaseInputProps, type BaseInputRef, BaseInput } from './base-input';
 import { InputContext } from './context';
-import { InputPrefixOrSuffix } from './input-slot';
+import { InputSlot } from './input-slot';
 
 interface InputProps extends BaseInputProps {
 	allowClear?: boolean;
@@ -41,14 +41,14 @@ const Input = forwardRef((inputProps: InputProps, ref) => {
 		return (
 			<InputContext.Provider value={{ size: props.size }}>
 				<div
-					tabIndex={props.disabled || props.readOnly ? -1 : 0}
+					tabIndex={-1}
 					data-slot="input"
 					className={cn(inputVariants({ size: props.size, disabled: props.disabled, className }))}
 				>
-					{prefix && <InputPrefixOrSuffix>{prefix}</InputPrefixOrSuffix>}
+					{prefix}
 					<BaseInput ref={ref} baseInputRef={baseInputRef} {...props} />
 					{clearIcon}
-					{suffix && <InputPrefixOrSuffix>{suffix}</InputPrefixOrSuffix>}
+					{suffix}
 				</div>
 			</InputContext.Provider>
 		);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Input } from 'rinex-ui';
-// import { Input } from "antd";
+import { Input, InputSlot } from 'rinex-ui';
+// import { Input } from 'antd';
 import { User, Search } from 'lucide-react';
 
 export default function InputTest() {
@@ -10,13 +10,22 @@ export default function InputTest() {
 		<div className="flex flex-col gap-4">
 			<Input
 				allowClear
-				disabled
-				value={value}
-				prefix={<User />}
-				suffix={<Search />}
-				placeholder="Input"
+				// disabled
 				size="lg"
+				value={value}
+				prefix={
+					<InputSlot className="bg-gray-100 mr-2">
+						<User />
+					</InputSlot>
+				}
+				suffix={
+					<InputSlot className="bg-gray-100">
+						<Search />
+					</InputSlot>
+				}
+				placeholder="Input"
 				onChange={(e) => {
+					// console.log(e);
 					setValue(e.target.value);
 				}}
 			/>
@@ -24,7 +33,11 @@ export default function InputTest() {
 				value={value}
 				allowClear
 				readOnly
-				prefix={<User />}
+				prefix={
+					<InputSlot>
+						<User />
+					</InputSlot>
+				}
 				placeholder="Input"
 				onChange={(e) => {
 					setValue(e.target.value);
@@ -33,8 +46,12 @@ export default function InputTest() {
 			<Input
 				value={value}
 				placeholder="Input"
-				size="sm"
-				prefix={<User size={16} />}
+				// size="sm"
+				prefix={
+					<InputSlot>
+						<User size={16} />
+					</InputSlot>
+				}
 				onChange={(e) => {
 					setValue(e.target.value);
 				}}

@@ -19,6 +19,7 @@ const Button = ({ children, variant, size, danger, className, ...props }: Button
 
 	return (
 		<button
+			tabIndex={-1}
 			data-slot="button"
 			data-variant={variant}
 			data-size={size}

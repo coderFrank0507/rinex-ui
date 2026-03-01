@@ -16,19 +16,25 @@ function cloneEvent<
 	return newEvent;
 }
 
+type EventType<E extends HTMLInputElement | HTMLTextAreaElement> =
+	| React.ChangeEvent<E>
+	| React.MouseEvent<HTMLElement, MouseEvent>;
 // 解析 onChange 事件
 export function resolveOnChange<E extends HTMLInputElement | HTMLTextAreaElement>(
 	target: E,
-	e: React.ChangeEvent<E> | React.MouseEvent<HTMLElement, MouseEvent>,
+	e: EventType<E>,
 	onChange: undefined | ((event: React.ChangeEvent<E>) => void),
 	targetValue?: string
 ) {
 	if (!onChange) return;
-	let event = e;
+
+	let event: EventType<E>;
 	if (e.type === 'click') {
 		event = cloneEvent(e, target, '');
 		onChange(event as React.ChangeEvent<E>);
 		return;
 	}
+
+	event = cloneEvent(e, target, targetValue);
 	onChange(event as React.ChangeEvent<E>);
 }
