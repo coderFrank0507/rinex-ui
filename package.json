@@ -2,13 +2,13 @@
 	"name": "rinex-ui-root",
 	"private": true,
 	"scripts": {
-		"commit": "git-cz",
 		"dev:ui": "pnpm --filter rinex-ui dev",
 		"dev:docs": "pnpm --filter @rinex-ui/docs dev",
 		"dev:demo": "pnpm --filter @rinex-ui/demo dev",
 		"lint": "eslint .",
 		"spell": "cspell \"{components,docs}/**/*\"",
-		"prepare": "husky"
+		"prepare": "husky",
+		"commit": "cz"
 	},
 	"config": {
 		"commitizen": {
