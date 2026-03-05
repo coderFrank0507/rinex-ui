@@ -4,20 +4,6 @@ import { Button } from 'rinex-ui';
 export default function ButtonTest() {
 	return (
 		<div className="flex gap-4 flex-wrap">
-			<Button
-				onClick={() => {
-					document.documentElement.classList.remove('dark');
-				}}
-			>
-				Light
-			</Button>
-			<Button
-				onClick={() => {
-					document.documentElement.classList.add('dark');
-				}}
-			>
-				Dark
-			</Button>
 			<Button variant="primary">Button</Button>
 			<Button>Button</Button>
 			<Button danger>Button</Button>

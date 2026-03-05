@@ -9,12 +9,14 @@ interface ConfigProviderProps {
 	 * 可自定义 16进制色值
 	 */
 	primaryColor?: ThemeColors;
+	dark?: boolean;
 }
 
 export const defaultValues: ConfigProviderProps = {
 	__used__: false,
 	size: 'default',
-	primaryColor: 'blue'
+	primaryColor: 'blue',
+	dark: false
 };
 
 export const ConfigContext = createContext<ConfigProviderProps>({ __used__: false });
