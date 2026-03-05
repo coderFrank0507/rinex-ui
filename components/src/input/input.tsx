@@ -4,7 +4,7 @@ import { cn } from '../_utils';
 import { X } from 'lucide-react';
 import { type BaseInputProps, type BaseInputRef, BaseInput } from './base-input';
 import { InputContext } from './context';
-import { InputSlot } from './input-slot';
+import { useConfigContext } from '../_utils/hooks';
 
 interface InputProps extends BaseInputProps {
 	allowClear?: boolean;
@@ -14,6 +14,7 @@ interface InputProps extends BaseInputProps {
 
 const Input = forwardRef((inputProps: InputProps, ref) => {
 	const { className, allowClear, prefix, suffix, ...props } = inputProps;
+	const context = useConfigContext();
 
 	const [showClearIcon, setShowClearIcon] = useState(false);
 	const baseInputRef = useRef<BaseInputRef>(null);
@@ -43,7 +44,9 @@ const Input = forwardRef((inputProps: InputProps, ref) => {
 				<div
 					tabIndex={-1}
 					data-slot="input"
-					className={cn(inputVariants({ size: props.size, disabled: props.disabled, className }))}
+					className={cn(
+						inputVariants({ size: props.size || context.size, disabled: props.disabled, className })
+					)}
 				>
 					{prefix}
 					<BaseInput ref={ref} baseInputRef={baseInputRef} {...props} />

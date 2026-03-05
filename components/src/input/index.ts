@@ -1,4 +1,12 @@
-import Input from './input';
+import InternalInput from './input';
 import { InputSlot } from './input-slot';
 
-export { Input, InputSlot };
+type InternalInputType = typeof InternalInput & {
+	Slot: typeof InputSlot;
+};
+
+const Input = InternalInput as InternalInputType;
+
+Input.Slot = InputSlot;
+
+export default Input;

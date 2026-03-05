@@ -1,5 +1,5 @@
-export * from './avatar';
-export * from './button';
-export * from './color';
-export * from './config-provider';
-export * from './input';
+export { default as Avatar } from './avatar';
+export { default as Button } from './button';
+export { default as Color } from './color';
+export { ConfigProvider, type ConfigProviderProps } from './config-provider';
+export { default as Input } from './input';

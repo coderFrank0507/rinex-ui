@@ -35,24 +35,6 @@ export function isHexColor(str: string) {
 
 const levels = [1, 0.8, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05];
 
-export function setTargetColor(hex: string, container: HTMLElement) {
-	hex = hex.replace('#', '');
-
-	if (hex.length === 3) {
-		hex = hex
-			.split('')
-			.map((c) => c + c)
-			.join('');
-	}
-
-	const r = parseInt(hex.slice(0, 2), 16);
-	const g = parseInt(hex.slice(2, 4), 16);
-	const b = parseInt(hex.slice(4, 6), 16);
-	levels.forEach((a, i) => {
-		container.style.setProperty(`--ru-primary-color-${i + 1}`, `rgba(${r}, ${g}, ${b}, ${a})`);
-	});
-}
-
 export type ThemeColors = 'blue' | 'green' | 'orange' | 'rose' | 'violet' | (string & {});
 
 export const colorMap: Record<ThemeColors, string> = {
@@ -66,6 +48,8 @@ export const colorMap: Record<ThemeColors, string> = {
 export let hasInitGlobalThemeColor = false;
 export function initGlobalThemeColor() {
 	if (hasInitGlobalThemeColor) return;
+	hasInitGlobalThemeColor = true;
+
 	let rinexUIStyle = document.querySelector('style[data-token="ru-theme-variables"]');
 	const isExist = !!rinexUIStyle;
 	if (!rinexUIStyle) {
@@ -78,7 +62,6 @@ export function initGlobalThemeColor() {
 	}, '');
 	rinexUIStyle.textContent = `:root{${content}}`;
 	if (!isExist) document.head.appendChild(rinexUIStyle);
-	hasInitGlobalThemeColor = true;
 }
 
 export function useThemeCSS(id: string, primaryColor: ThemeColors) {

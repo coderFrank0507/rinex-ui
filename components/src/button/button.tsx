@@ -1,4 +1,4 @@
-import React, { useMemo, type PropsWithChildren } from 'react';
+import React, { type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
 import { buttonVariants } from './variants';
 import type { VariantProps } from 'class-variance-authority';
@@ -13,9 +13,7 @@ interface ButtonProps
 }
 
 const Button = ({ children, variant, size, danger, className, ...props }: ButtonProps) => {
-	const { size: contextSize } = useConfigContext();
-
-	const buttonSize = useMemo(() => size || contextSize, [size, contextSize]);
+	const context = useConfigContext();
 
 	return (
 		<button
@@ -27,7 +25,7 @@ const Button = ({ children, variant, size, danger, className, ...props }: Button
 				buttonVariants({
 					variant,
 					danger,
-					size: buttonSize,
+					size: size || context.size,
 					className
 				})
 			)}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, InputSlot } from 'rinex-ui';
+import { Input } from 'rinex-ui';
 // import { Input } from 'antd';
 import { User, Search } from 'lucide-react';
 
@@ -15,14 +15,14 @@ export default function InputTest() {
 				size="lg"
 				value={value}
 				prefix={
-					<InputSlot>
+					<Input.Slot>
 						<User />
-					</InputSlot>
+					</Input.Slot>
 				}
 				suffix={
-					<InputSlot className="bg-gray-100 dark:bg-gray-700 ml-2">
+					<Input.Slot className="bg-gray-100 dark:bg-gray-700 ml-2">
 						<Search />
-					</InputSlot>
+					</Input.Slot>
 				}
 				placeholder="Input"
 				onChange={(e) => {
@@ -35,9 +35,9 @@ export default function InputTest() {
 				allowClear
 				readOnly
 				prefix={
-					<InputSlot>
+					<Input.Slot>
 						<User />
-					</InputSlot>
+					</Input.Slot>
 				}
 				placeholder="Input"
 				onChange={(e) => {
@@ -49,9 +49,9 @@ export default function InputTest() {
 				placeholder="Input"
 				// size="sm"
 				prefix={
-					<InputSlot>
+					<Input.Slot>
 						<User size={16} />
-					</InputSlot>
+					</Input.Slot>
 				}
 				onChange={(e) => {
 					setValue(e.target.value);
