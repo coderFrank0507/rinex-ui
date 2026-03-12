@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren } from 'react';
+import React, { memo, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
 import { buttonVariants } from './variants';
 import type { VariantProps } from 'class-variance-authority';
@@ -12,7 +12,7 @@ interface ButtonProps
 	danger?: boolean;
 }
 
-const Button = ({ children, variant, size, danger, className, ...props }: ButtonProps) => {
+const Button = memo(({ children, variant, size, danger, className, ...props }: ButtonProps) => {
 	const context = useConfigContext();
 
 	return (
@@ -34,6 +34,6 @@ const Button = ({ children, variant, size, danger, className, ...props }: Button
 			{children}
 		</button>
 	);
-};
+});
 
 export default Button;

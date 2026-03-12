@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { baseInputVariants } from './variants';
 import { cn } from '../_utils';

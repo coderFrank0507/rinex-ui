@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, type PropsWithChildren } from 'react';
 import { inputPrefixVariants } from './variants';
 import { cn } from '../_utils';

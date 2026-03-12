@@ -84,11 +84,26 @@ export function useThemeCSS(id: string, primaryColor: ThemeColors) {
 		const g = parseInt(hex.slice(2, 4), 16);
 		const b = parseInt(hex.slice(4, 6), 16);
 
-		return levels.reduce((pre, cur, i) => {
-			pre += `--ru-primary-color-${i + 1}:rgba(${r},${g},${b},${cur});`;
-			return pre;
-		}, '');
-	}, [primaryColor]);
+		return (
+			<style data-token={`ru-primary-variables-${id}`}>{`.${className}{${levels.reduce(
+				(pre, cur, i) => {
+					pre += `--ru-primary-color-${i + 1}:rgba(${r},${g},${b},${cur});`;
+					return pre;
+				},
+				''
+			)}}`}</style>
+		);
+	}, [primaryColor, className, id]);
 
-	return { className, cssVariables };
+	const darkClass = useMemo(
+		() => (
+			<style
+				data-token={`ru-theme-variables-${id}`}
+			>{`.${className}.light{--ru-text-color:#000;--ru-border-color:#d1d5dc;--ru-placeholder-color:#9da3af}
+				.${className}.dark{--ru-text-color:#fff;--ru-border-color:#9da3af;--ru-placeholder-color:#6c7280}`}</style>
+		),
+		[className, id]
+	);
+
+	return { className, cssVariables, darkClass };
 }

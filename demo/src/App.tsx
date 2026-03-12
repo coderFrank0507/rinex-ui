@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button, ConfigProvider } from 'rinex-ui';
-import ButtonTest from './test/button';
-import InputTest from './test/input';
-import ColorTest from './test/color';
+// import ButtonTest from './test/button';
+// import InputTest from './test/input';
+// import ColorTest from './test/color';
+import CollapseTest from './test/collapse';
 
 function App() {
 	const [color, setColor] = useState('green');
@@ -33,9 +34,10 @@ function App() {
 							Dark
 						</Button>
 					</div>
-					<ButtonTest />
-					<InputTest />
-					<ColorTest />
+					{/* <ButtonTest /> */}
+					{/* <InputTest />
+					<ColorTest /> */}
+					<CollapseTest />
 				</div>
 			</ConfigProvider>
 		</div>
