@@ -7,7 +7,7 @@ import CollapseTest from './test/collapse';
 
 function App() {
 	const [color, setColor] = useState('green');
-	const [dark, setDark] = useState(true);
+	const [dark, setDark] = useState(false);
 
 	return (
 		<div className="h-screen dark:bg-[#282c34]">
@@ -18,6 +18,7 @@ function App() {
 						<Button onClick={() => setColor('green')}>Green</Button>
 						<Button onClick={() => setColor('violet')}>Violet</Button>
 						<Button
+							variant={'primary'}
 							onClick={() => {
 								document.documentElement.classList.remove('dark');
 								setDark(false);
@@ -26,6 +27,7 @@ function App() {
 							Light
 						</Button>
 						<Button
+							variant={'primary'}
 							onClick={() => {
 								document.documentElement.classList.add('dark');
 								setDark(true);

@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
+import React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -66,3 +67,21 @@ export const useUID = (length = 8) => {
 
 	return id;
 };
+
+export function hasTargetChild(
+	children: React.ReactNode,
+	parentDisplayName: string,
+	displayName: string
+) {
+	const hasTarget = React.Children.toArray(children).some((child) => {
+		if (!React.isValidElement(child)) return false;
+		if (typeof child.type === 'string') return false;
+		return (child.type as any).displayName === displayName;
+	});
+
+	if (!hasTarget) {
+		console.error(`Component: ${parentDisplayName} must used ${displayName}`);
+	}
+
+	return hasTarget;
+}
