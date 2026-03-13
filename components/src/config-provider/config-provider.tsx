@@ -11,12 +11,12 @@ function ConfigProvider({
 	...props
 }: ConfigProviderProps & PropsWithChildren) {
 	const id = useId();
-	const { className, cssVariables, darkClass } = useThemeCSS(id, primaryColor);
+	const { className, primaryVariables, globalVariables } = useThemeCSS(id, primaryColor);
 
 	return (
 		<ConfigContext.Provider value={{ __used__: true, primaryColor, dark, ...props }}>
-			{cssVariables}
-			{darkClass}
+			{primaryVariables}
+			{globalVariables}
 			<div id={`ru-config-provider-${id}`} className={`${className} ${dark ? 'dark' : 'light'}`}>
 				{children}
 			</div>

@@ -60,13 +60,18 @@ export function initGlobalThemeColor() {
 		pre += `--ru-primary-color-${i + 1}:rgba(20,71,230,${cur});`;
 		return pre;
 	}, '');
+	// const globalVariablesContent = createGlobalVariablesContent('html');
 	rinexUIStyle.textContent = `:root{${content}}`;
 	if (!isExist) document.head.appendChild(rinexUIStyle);
 }
 
+function createGlobalVariablesContent(className: string) {
+	return `.${className}.light{--ru-text-color:#000;--ru-border-color:#d1d5dc;--ru-placeholder-color:#9da3af}.${className}.dark{--ru-text-color:#fff;--ru-border-color:#9da3af;--ru-placeholder-color:#6c7280}`;
+}
+
 export function useThemeCSS(id: string, primaryColor: ThemeColors) {
 	const className = `ru-theme-${id}`;
-	const cssVariables = useMemo(() => {
+	const primaryVariables = useMemo(() => {
 		const color = isHexColor(primaryColor)
 			? primaryColor
 			: (colorMap[primaryColor] ?? colorMap.blue);
@@ -95,15 +100,14 @@ export function useThemeCSS(id: string, primaryColor: ThemeColors) {
 		);
 	}, [primaryColor, className, id]);
 
-	const darkClass = useMemo(
+	const globalVariables = useMemo(
 		() => (
-			<style
-				data-token={`ru-theme-variables-${id}`}
-			>{`.${className}.light{--ru-text-color:#000;--ru-border-color:#d1d5dc;--ru-placeholder-color:#9da3af}
-				.${className}.dark{--ru-text-color:#fff;--ru-border-color:#9da3af;--ru-placeholder-color:#6c7280}`}</style>
+			<style data-token={`ru-theme-variables-${id}`}>
+				{createGlobalVariablesContent(className)}
+			</style>
 		),
 		[className, id]
 	);
 
-	return { className, cssVariables, darkClass };
+	return { className, primaryVariables, globalVariables };
 }

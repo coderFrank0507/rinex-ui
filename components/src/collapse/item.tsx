@@ -15,7 +15,10 @@ function CollapseItem({ className, children, value, ...props }: CollapseItemProp
 		<ItemContext.Provider value={{ value }}>
 			<div
 				data-slot="collapse-item"
-				className={cn('border-b border-[var(--ru-border-color)]', className)}
+				className={cn(
+					'text-[var(--ru-text-color)] border-b border-[var(--ru-border-color)]',
+					className
+				)}
 				{...props}
 			>
 				{children}
