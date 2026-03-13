@@ -1,6 +1,6 @@
 import { useContext, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
-import { ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { CollapseContext, ItemContext } from './context';
 
 interface CollapseTriggerProps extends PropsWithChildren {
@@ -30,18 +30,18 @@ function CollapseTrigger({ className, children, ...props }: CollapseTriggerProps
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'flex justify-between items-center cursor-pointer py-2 hover:underline',
+				'flex justify-between gap-2 items-center cursor-pointer py-2 hover:underline',
 				className
 			)}
 			onClick={handleTriggerClick}
 			{...props}
 		>
-			{children}
-			<ChevronDown
+			<ChevronRight
 				data-slot="collapse-trigger-icon"
 				size={18}
-				className={cn('transition-transform duration-200', { 'rotate-x-180': open })}
+				className={cn('transition-transform duration-200', { 'rotate-90': open })}
 			/>
+			<span className="flex-1">{children}</span>
 		</div>
 	);
 }
