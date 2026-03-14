@@ -19,6 +19,8 @@ export const CollapseContext = createContext<CollapseContextProps & CollapseCont
 
 export const ItemContext = createContext<{
 	value: string;
+	disabled: boolean;
 }>({
-	value: ''
+	value: '',
+	disabled: false
 });

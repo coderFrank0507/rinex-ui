@@ -4,7 +4,9 @@ import { Button } from 'rinex-ui';
 export default function ButtonTest() {
 	return (
 		<div className="flex gap-4 flex-wrap">
-			<Button variant="primary">Button</Button>
+			<Button variant="primary" disabled>
+				Button
+			</Button>
 			<Button>Button</Button>
 			<Button danger>Button</Button>
 			<Button danger variant="primary">

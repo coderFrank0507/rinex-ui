@@ -4,14 +4,14 @@ import { Input } from 'rinex-ui';
 import { User, Search } from 'lucide-react';
 
 export default function InputTest() {
-	const [value, setValue] = useState('');
+	const [value, setValue] = useState('abc');
 
 	return (
 		<div className="flex flex-col gap-4">
 			<Input placeholder="请输入" />
 			<Input
 				allowClear
-				// disabled
+				disabled
 				size="lg"
 				value={value}
 				prefix={

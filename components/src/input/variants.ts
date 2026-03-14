@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const baseInputVariants = cva(
-	'w-full outline-none placeholder:text-[var(--ru-placeholder-color)] text-[var(--ru-text-color)] disabled:bg-transparent transition disabled:cursor-not-allowed border-[var(--ru-border-color)]',
+	'w-full outline-none placeholder:text-[var(--ru-placeholder-color)] border-[var(--ru-border-color)] text-[var(--ru-text-color)] disabled:bg-transparent transition disabled:cursor-not-allowed disabled:text-[var(--ru-disabled-color)]',
 	{
 		variants: {
 			size: {
@@ -29,7 +29,7 @@ export const inputVariants = cva(
 				sm: 'h-6 text-sm'
 			},
 			disabled: {
-				true: 'hover:border-inherit focus-within:border-inherit focus-within:ring-0 text-gray-400 cursor-not-allowed'
+				true: 'hover:border-inherit focus-within:border-inherit focus-within:ring-0 cursor-not-allowed text-[var(--ru-disabled-color)]'
 			}
 		},
 		defaultVariants: {

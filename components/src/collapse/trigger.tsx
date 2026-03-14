@@ -9,7 +9,7 @@ interface CollapseTriggerProps extends PropsWithChildren {
 
 function CollapseTrigger({ className, children, ...props }: CollapseTriggerProps) {
 	const { activeKeys, toggle } = useContext(CollapseContext);
-	const { value } = useContext(ItemContext);
+	const { value, disabled } = useContext(ItemContext);
 
 	const open = activeKeys.includes(value);
 
@@ -17,10 +17,15 @@ function CollapseTrigger({ className, children, ...props }: CollapseTriggerProps
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'flex justify-between gap-2 py-2 items-center cursor-pointer hover:underline',
+				'flex justify-between gap-2 py-2 items-center cursor-pointer',
+				{
+					'text-[var(--ru-disabled-color)]': disabled,
+					'cursor-not-allowed': disabled,
+					'hover:underline': !disabled
+				},
 				className
 			)}
-			onClick={() => toggle(value)}
+			onClick={() => !disabled && toggle(value)}
 			{...props}
 		>
 			<ChevronRight
