@@ -1,6 +1,6 @@
-import { type PropsWithChildren } from 'react';
+import { useContext, type PropsWithChildren } from 'react';
 import { cn, hasTargetChild } from '../_utils';
-import { ItemContext } from './context';
+import { CollapseContext, ItemContext } from './context';
 
 interface CollapseItemProps extends PropsWithChildren {
 	className?: string;
@@ -8,6 +8,8 @@ interface CollapseItemProps extends PropsWithChildren {
 }
 
 function CollapseItem({ className, children, value, ...props }: CollapseItemProps) {
+	const { level } = useContext(CollapseContext);
+
 	const hasTrigger = hasTargetChild(children, 'Collapse.Item', 'Collapse.Trigger');
 	const hasContent = hasTargetChild(children, 'Collapse.Item', 'Collapse.Content');
 
@@ -15,8 +17,9 @@ function CollapseItem({ className, children, value, ...props }: CollapseItemProp
 		<ItemContext.Provider value={{ value }}>
 			<div
 				data-slot="collapse-item"
+				// style={{ '--ru-collapse-item-indent': `${(level - 1) * 12}px` } as React.CSSProperties}
 				className={cn(
-					'text-[var(--ru-text-color)] border-b border-[var(--ru-border-color)]',
+					'text-[var(--ru-text-color)] border-t border-[var(--ru-border-color)] first:border-none',
 					className
 				)}
 				{...props}

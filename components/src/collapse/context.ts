@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 
 interface CollapseContextValue {
-	expandedItems: string[];
-	setExpandedItems: React.Dispatch<React.SetStateAction<string[]>>;
+	activeKeys: string[];
+	toggle: (key: string) => void;
+	level: number;
 }
 
 export interface CollapseContextProps {
@@ -10,9 +11,10 @@ export interface CollapseContextProps {
 }
 
 export const CollapseContext = createContext<CollapseContextProps & CollapseContextValue>({
-	expandedItems: [],
-	setExpandedItems: () => {},
-	single: false
+	activeKeys: [],
+	toggle: () => {},
+	single: false,
+	level: 0
 });
 
 export const ItemContext = createContext<{

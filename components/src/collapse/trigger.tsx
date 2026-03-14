@@ -8,32 +8,19 @@ interface CollapseTriggerProps extends PropsWithChildren {
 }
 
 function CollapseTrigger({ className, children, ...props }: CollapseTriggerProps) {
-	const { expandedItems, setExpandedItems, single } = useContext(CollapseContext);
+	const { activeKeys, toggle } = useContext(CollapseContext);
 	const { value } = useContext(ItemContext);
 
-	const handleTriggerClick = () => {
-		if (single) {
-			setExpandedItems(value === expandedItems[0] ? [] : [value]);
-		} else {
-			const index = expandedItems.findIndex((item) => item === value);
-			if (index === -1) {
-				setExpandedItems([...expandedItems, value]);
-			} else {
-				setExpandedItems(expandedItems.filter((item) => item !== value));
-			}
-		}
-	};
-
-	const open = expandedItems.includes(value);
+	const open = activeKeys.includes(value);
 
 	return (
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'flex justify-between gap-2 items-center cursor-pointer py-2 hover:underline',
+				'flex justify-between gap-2 py-2 items-center cursor-pointer hover:underline',
 				className
 			)}
-			onClick={handleTriggerClick}
+			onClick={() => toggle(value)}
 			{...props}
 		>
 			<ChevronRight

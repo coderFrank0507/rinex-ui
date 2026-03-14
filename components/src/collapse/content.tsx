@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useState, type PropsWithChildren } from 'react';
+import { useContext, useLayoutEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
 import { CollapseContext, ItemContext } from './context';
 
@@ -7,12 +7,12 @@ interface CollapseContentProps extends PropsWithChildren {
 }
 
 function CollapseContent({ className, children, ...props }: CollapseContentProps) {
-	const { expandedItems } = useContext(CollapseContext);
+	const { activeKeys, level } = useContext(CollapseContext);
 	const { value } = useContext(ItemContext);
-	const [height, setHeight] = useState(0);
+
 	const [open, setOpen] = useState(false);
 
-	const hasExpanded = expandedItems.includes(value);
+	const hasExpanded = activeKeys.includes(value);
 
 	useLayoutEffect(() => {
 		if (hasExpanded) {
@@ -20,32 +20,28 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 				setOpen(true);
 			});
 		} else {
-			setTimeout(() => {
-				setHeight(0);
-				setOpen(false);
-			}, 300);
+			if (open) {
+				setTimeout(() => {
+					setOpen(false);
+				}, 300);
+			}
 		}
-	}, [hasExpanded]);
+	}, [hasExpanded, open]);
 
 	return (
 		<div
 			data-slot="collapse-content"
-			className={cn('overflow-hidden font-light', className)}
-			style={{ '--ru-collapse-content-height': `${height}px` } as React.CSSProperties}
+			className={cn(
+				'overflow-hidden font-light grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out',
+				{
+					'grid-rows-[1fr]': hasExpanded
+				}
+			)}
 			{...props}
 		>
-			{open && (
-				<div
-					ref={(node) => {
-						if (node && height === 0) setHeight(node.scrollHeight + 8);
-					}}
-					className={cn('transition-height duration-300 ease-in-out h-0', {
-						'h-[var(--ru-collapse-content-height)]': hasExpanded
-					})}
-				>
-					{children}
-				</div>
-			)}
+			<div className="overflow-hidden">
+				{open && <div className={cn('pb-2', className)}>{children}</div>}
+			</div>
 		</div>
 	);
 }
