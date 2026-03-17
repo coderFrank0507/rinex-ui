@@ -30,7 +30,7 @@ const Collapse = ({ className, single = false, children, ...props }: CollapsePro
 	return (
 		<CollapseContext.Provider value={{ activeKeys, toggle, single, level: level + 1 }}>
 			<div
-				data-slot="collapse-content"
+				data-slot="collapse-root"
 				style={{ '--ru-collapse-item-indent': `${level * 16}px` } as React.CSSProperties}
 				className={cn('ml-[var(--ru-collapse-item-indent)]', className)}
 				{...props}

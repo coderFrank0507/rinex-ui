@@ -40,7 +40,11 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 			{...props}
 		>
 			<div className="overflow-hidden">
-				{open && <div className={cn('pb-2', className)}>{children}</div>}
+				{open && (
+					<div className={cn('pb-2 has-[[data-slot="collapse-root"]]:pb-0', className)}>
+						{children}
+					</div>
+				)}
 			</div>
 		</div>
 	);
