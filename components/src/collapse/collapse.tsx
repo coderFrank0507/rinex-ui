@@ -7,28 +7,39 @@ import { CollapseContext, type CollapseContextProps } from './context';
 
 interface CollapseProps extends PropsWithChildren, CollapseContextProps {
 	className?: string;
+	activeKeys?: string[];
+	onChange?: (keys: string[]) => void;
 }
 
-const Collapse = ({ className, single = false, children, ...props }: CollapseProps) => {
+const Collapse = ({
+	className,
+	activeKeys: initialActiveKeys,
+	single = false,
+	children,
+	onChange,
+	...props
+}: CollapseProps) => {
 	const context = useConfigContext();
 	const { level } = useContext(CollapseContext);
 
-	const [activeKeys, setActiveKeys] = useState<string[]>([]);
+	const [activeKeys, setActiveKeys] = useState<string[]>(initialActiveKeys || []);
 
 	hasTargetChild(children, 'Collapse', 'Collapse.Item');
 
 	const toggle = (key: string) => {
+		const setKeys = initialActiveKeys ? onChange : setActiveKeys;
+		const prevKeys = initialActiveKeys || activeKeys;
 		if (single) {
-			setActiveKeys(key === activeKeys[0] ? [] : [key]);
+			setKeys?.(key === prevKeys[0] ? [] : [key]);
 		} else {
-			setActiveKeys((prevKeys) =>
-				prevKeys.includes(key) ? prevKeys.filter((k) => k !== key) : [...prevKeys, key]
-			);
+			setKeys?.(prevKeys.includes(key) ? prevKeys.filter((k) => k !== key) : [...prevKeys, key]);
 		}
 	};
 
 	return (
-		<CollapseContext.Provider value={{ activeKeys, toggle, single, level: level + 1 }}>
+		<CollapseContext.Provider
+			value={{ activeKeys: initialActiveKeys || activeKeys, toggle, single, level: level + 1 }}
+		>
 			<div
 				data-slot="collapse-root"
 				style={{ '--ru-collapse-item-indent': `${level * 16}px` } as React.CSSProperties}
