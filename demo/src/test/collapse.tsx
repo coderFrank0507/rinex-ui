@@ -14,7 +14,7 @@ const CollapseTest = () => {
 				<Collapse.Item value="2">
 					<Collapse.Trigger>123</Collapse.Trigger>
 					<Collapse.Content>
-						<Collapse single className="border">
+						<Collapse single>
 							<Collapse.Item value="1">
 								<Collapse.Trigger>123</Collapse.Trigger>
 								<Collapse.Content>

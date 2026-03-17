@@ -23,7 +23,7 @@ function CollapseItem({
 			<div
 				data-slot="collapse-item"
 				className={cn(
-					'text-[var(--ru-text-color)] border-t border-[var(--ru-border-color)] first:border-none',
+					'mt-2 pt-2 border-t border-[var(--ru-border-color)] text-[var(--ru-text-color)] first:border-none first:mt-0 first:pt-0',
 					className
 				)}
 				{...props}

@@ -17,7 +17,7 @@ function CollapseTrigger({ className, children, ...props }: CollapseTriggerProps
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'flex justify-between gap-2 py-2 items-center cursor-pointer',
+				'flex justify-between gap-2 items-center cursor-pointer',
 				{
 					'text-[var(--ru-disabled-color)]': disabled,
 					'cursor-not-allowed': disabled,
