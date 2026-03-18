@@ -15,7 +15,7 @@ export default defineConfig({
 			subject: '输入变更描述 (必填):',
 			body: '输入变更详情 (可选):',
 			breaking: '输入突破性变更 (可选):',
-			footerPrefixSelect: '选择关联 issue 类型 (可选):',
+			footerPrefixsSelect: '选择关联 issue 类型 (可选):',
 			customFooterPrefix: '输入自定义 issue 前缀:',
 			footer: '输入关联 issue (可选):',
 			confirmCommit: '确认提交以上变更?'
