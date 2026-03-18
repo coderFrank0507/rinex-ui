@@ -2,3 +2,7 @@
 @import 'tailwindcss';
 
 @config '../../tailwind.config.ts';
+
+body #root {
+	/* font-weight: 300; */
+}

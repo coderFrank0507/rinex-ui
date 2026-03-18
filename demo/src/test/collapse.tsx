@@ -37,6 +37,23 @@ const CollapseTest = () => {
 						<Collapse.Content>{item.content}</Collapse.Content>
 					</Collapse.Item>
 				))}
+				<Collapse.Item value="4">
+					<Collapse.Trigger triggerIcon={<Axe size={16} />} triggerExtra={'678678'}>
+						456
+					</Collapse.Trigger>
+					<Collapse.Content>
+						<Collapse arrowPlacement="left" activeKeys={values} onChange={setValues}>
+							{list.map((item) => (
+								<Collapse.Item key={item.value} value={item.value}>
+									<Collapse.Trigger triggerIcon={<Axe size={16} />} triggerExtra={'678678'}>
+										{item.title}
+									</Collapse.Trigger>
+									<Collapse.Content>{item.content}</Collapse.Content>
+								</Collapse.Item>
+							))}
+						</Collapse>
+					</Collapse.Content>
+				</Collapse.Item>
 			</Collapse>
 		</div>
 	);

@@ -32,7 +32,7 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 		<div
 			data-slot="collapse-content"
 			className={cn(
-				'overflow-hidden font-light has-[[data-slot="collapse-root"]]:pt-2 grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out',
+				'overflow-hidden has-[[data-slot="collapse-root"]]:pt-2 grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out',
 				{
 					'grid-rows-[1fr]': hasExpanded
 				}

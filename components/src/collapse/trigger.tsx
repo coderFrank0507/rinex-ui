@@ -39,7 +39,7 @@ function CollapseTrigger({
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'flex justify-between gap-2 items-center cursor-pointer',
+				'flex justify-between gap-2 items-center cursor-pointer font-normal',
 				{
 					'text-[var(--ru-disabled-color)]': disabled,
 					'cursor-not-allowed': disabled
