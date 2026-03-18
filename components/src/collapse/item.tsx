@@ -1,6 +1,6 @@
 import { type PropsWithChildren } from 'react';
 import { cn, hasTargetChild } from '../_utils';
-import { ItemContext } from './context';
+import { ItemContext } from './hooks';
 
 interface CollapseItemProps extends PropsWithChildren {
 	className?: string;

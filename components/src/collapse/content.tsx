@@ -1,20 +1,20 @@
-import { useContext, useLayoutEffect, useState, type PropsWithChildren } from 'react';
+import { useEffect, useState, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
-import { CollapseContext, ItemContext } from './context';
+import { useItemContext, useCollapseContext } from './hooks';
 
 interface CollapseContentProps extends PropsWithChildren {
 	className?: string;
 }
 
 function CollapseContent({ className, children, ...props }: CollapseContentProps) {
-	const { activeKeys } = useContext(CollapseContext);
-	const { value } = useContext(ItemContext);
+	const { activeKeys } = useCollapseContext();
+	const { value } = useItemContext();
 
 	const [open, setOpen] = useState(false);
 
 	const hasExpanded = activeKeys.includes(value);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (hasExpanded) {
 			queueMicrotask(() => {
 				setOpen(true);
@@ -23,7 +23,7 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 			if (open) {
 				setTimeout(() => {
 					setOpen(false);
-				}, 300);
+				}, 200);
 			}
 		}
 	}, [hasExpanded, open]);
@@ -32,7 +32,7 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 		<div
 			data-slot="collapse-content"
 			className={cn(
-				'overflow-hidden font-light has-[[data-slot="collapse-root"]]:pt-2 grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out',
+				'overflow-hidden font-light has-[[data-slot="collapse-root"]]:pt-2 grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out',
 				{
 					'grid-rows-[1fr]': hasExpanded
 				}
