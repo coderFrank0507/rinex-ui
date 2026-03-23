@@ -3,12 +3,7 @@
 import type { PropsWithChildren } from 'react';
 import { useConfigContext } from '../_utils/hooks';
 import { cn, hasTargetChild } from '../_utils';
-import {
-	CollapseContext,
-	useCollapseContext,
-	useCollapseValues,
-	type CollapseContextProps
-} from './hooks';
+import { CollapseContext, useCollapseValues, type CollapseContextProps } from './hooks';
 
 interface CollapseProps extends PropsWithChildren, CollapseContextProps {
 	/** 自定义类名 */
@@ -27,7 +22,6 @@ const Collapse = ({
 	...contextProps
 }: CollapseProps) => {
 	const context = useConfigContext();
-	const { level } = useCollapseContext();
 
 	const { activeKeys, setActiveKeys } = useCollapseValues(
 		initialActiveKeys,
@@ -38,12 +32,10 @@ const Collapse = ({
 	hasTargetChild(children, 'Collapse', 'Collapse.Item');
 
 	return (
-		<CollapseContext.Provider
-			value={{ activeKeys, setActiveKeys, level: level + 1, ...contextProps }}
-		>
+		<CollapseContext.Provider value={{ activeKeys, setActiveKeys, ...contextProps }}>
 			<div
 				data-slot="collapse-root"
-				style={{ '--ru-collapse-item-indent': `${level * 16}px` } as React.CSSProperties}
+				style={{ '--ru-collapse-item-indent': '16px' } as React.CSSProperties}
 				className={cn('ml-[var(--ru-collapse-item-indent)]', className)}
 			>
 				{children}

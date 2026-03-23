@@ -11,14 +11,12 @@ export interface CollapseContextProps {
 interface CollapseContextValue {
 	activeKeys: string[];
 	setActiveKeys: (key: string) => void;
-	level: number;
 }
 
 export const CollapseContext = createContext<CollapseContextProps & CollapseContextValue>({
 	activeKeys: [],
 	setActiveKeys: () => {},
 	single: false,
-	level: 0,
 	arrowPlacement: 'left'
 });
 

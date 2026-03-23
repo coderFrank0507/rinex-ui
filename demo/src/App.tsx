@@ -10,7 +10,7 @@ function App() {
 	const [dark, setDark] = useState(false);
 
 	return (
-		<div className="h-full dark:bg-[#282c34]">
+		<div className="h-screen dark:bg-[#282c34]">
 			<ConfigProvider primaryColor={color} dark={dark}>
 				<div className="p-10 space-y-4">
 					<div className="flex gap-4">
