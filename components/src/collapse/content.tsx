@@ -1,5 +1,4 @@
-import { useEffect, useState, type PropsWithChildren } from 'react';
-import { cn } from '../_utils';
+import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { useItemContext, useCollapseContext } from './hooks';
 
 interface CollapseContentProps extends PropsWithChildren {
@@ -7,9 +6,10 @@ interface CollapseContentProps extends PropsWithChildren {
 }
 
 function CollapseContent({ className, children, ...props }: CollapseContentProps) {
-	const { activeKeys } = useCollapseContext();
+	const { activeKeys, keepContent } = useCollapseContext();
 	const { value } = useItemContext();
 
+	const elRef = useRef<HTMLDivElement>(null);
 	const [open, setOpen] = useState(false);
 
 	const hasExpanded = activeKeys.includes(value);
@@ -20,26 +20,44 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 				setOpen(true);
 			});
 		} else {
-			if (open) {
+			if (elRef.current) {
+				elRef.current.style.height = `${elRef.current.clientHeight}px`;
+				elRef.current.offsetHeight;
+				elRef.current.style.height = '0px';
+			}
+
+			if (!keepContent) {
 				setTimeout(() => {
 					setOpen(false);
-				}, 200);
+				}, 150);
 			}
 		}
-	}, [hasExpanded, open]);
+	}, [hasExpanded, keepContent]);
+
+	const refFn = (el: HTMLDivElement | null) => {
+		if (el && hasExpanded) {
+			if (elRef.current) {
+				const { current: contentEl } = elRef;
+				contentEl.style.height = `${el.clientHeight}px`;
+				setTimeout(() => {
+					contentEl.style.height = 'auto';
+				}, 150);
+			}
+		}
+	};
 
 	return (
 		<div
 			data-slot="collapse-content"
-			className={cn(
-				'overflow-hidden has-[[data-slot="collapse-root"]]:pt-2 grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out',
-				{
-					'grid-rows-[1fr]': hasExpanded
-				}
-			)}
+			ref={elRef}
+			className={'h-0 overflow-clip transition-[height,opacity] duration-150 ease-in-out'}
 			{...props}
 		>
-			{open && <div className={cn('overflow-hidden', className)}>{children}</div>}
+			{open && (
+				<div ref={refFn} className={className}>
+					{children}
+				</div>
+			)}
 		</div>
 	);
 }

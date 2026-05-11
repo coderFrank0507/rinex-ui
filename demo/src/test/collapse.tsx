@@ -21,8 +21,8 @@ const CollapseTest = () => {
 	const [values, setValues] = useState(['2']);
 
 	return (
-		<div className="w-96">
-			<Collapse arrowPlacement="left">
+		<div className="w-96 border">
+			<Collapse keepContent arrowPlacement="left">
 				{list.map((item) => (
 					<Collapse.Item key={item.value} value={item.value}>
 						<Collapse.Trigger triggerIcon={<ArrowBigRightDash size={16} />} triggerExtra={'678678'}>

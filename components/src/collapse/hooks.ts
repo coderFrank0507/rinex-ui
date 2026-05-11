@@ -2,6 +2,8 @@ import { createContext, useContext, useState } from 'react';
 
 /** 可用于 Collapse 组件的 props 属性 */
 export interface CollapseContextProps {
+	/** 是否保持内容 */
+	keepContent?: boolean;
 	/** 是否为单面板模式 */
 	single?: boolean;
 	/** 箭头位置 */
@@ -9,15 +11,18 @@ export interface CollapseContextProps {
 }
 
 interface CollapseContextValue {
+	level: number;
 	activeKeys: string[];
 	setActiveKeys: (key: string) => void;
 }
 
 export const CollapseContext = createContext<CollapseContextProps & CollapseContextValue>({
-	activeKeys: [],
-	setActiveKeys: () => {},
+	level: 0,
+	keepContent: false,
 	single: false,
-	arrowPlacement: 'left'
+	arrowPlacement: 'left',
+	activeKeys: [],
+	setActiveKeys: () => {}
 });
 
 export const ItemContext = createContext<{
