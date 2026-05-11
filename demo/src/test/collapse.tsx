@@ -25,49 +25,10 @@ const CollapseTest = () => {
 			<Collapse keepContent arrowPlacement="left">
 				{list.map((item) => (
 					<Collapse.Item key={item.value} value={item.value}>
-						<Collapse.Trigger triggerIcon={<ArrowBigRightDash size={16} />} triggerExtra={'678678'}>
-							{item.title}
-						</Collapse.Trigger>
+						<Collapse.Trigger>{item.title}</Collapse.Trigger>
 						<Collapse.Content>{item.content}</Collapse.Content>
 					</Collapse.Item>
 				))}
-				<Collapse.Item value="4">
-					<Collapse.Trigger triggerIcon={<ArrowBigRightDash size={16} />} triggerExtra={'678678'}>
-						456
-					</Collapse.Trigger>
-					<Collapse.Content>
-						<Collapse arrowPlacement="left" single className="border">
-							{list.map((item) => (
-								<Collapse.Item key={item.value} value={item.value}>
-									<Collapse.Trigger triggerIcon={<Dog size={16} />} triggerExtra={'678678'}>
-										{item.title}
-									</Collapse.Trigger>
-									<Collapse.Content>{item.content}</Collapse.Content>
-								</Collapse.Item>
-							))}
-							<Collapse.Item value="4">
-								<Collapse.Trigger
-									triggerIcon={<ArrowBigRightDash size={16} />}
-									triggerExtra={'678678'}
-								>
-									456
-								</Collapse.Trigger>
-								<Collapse.Content>
-									<Collapse arrowPlacement="left" single className="border">
-										{list.map((item) => (
-											<Collapse.Item key={item.value} value={item.value}>
-												<Collapse.Trigger triggerIcon={<Dog size={16} />} triggerExtra={'678678'}>
-													{item.title}
-												</Collapse.Trigger>
-												<Collapse.Content>{item.content}</Collapse.Content>
-											</Collapse.Item>
-										))}
-									</Collapse>
-								</Collapse.Content>
-							</Collapse.Item>
-						</Collapse>
-					</Collapse.Content>
-				</Collapse.Item>
 			</Collapse>
 		</div>
 	);

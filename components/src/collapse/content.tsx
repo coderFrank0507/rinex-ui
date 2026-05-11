@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { useItemContext, useCollapseContext } from './hooks';
+import { cn } from '../_utils';
 
 interface CollapseContentProps extends PropsWithChildren {
 	className?: string;
@@ -11,6 +12,7 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 
 	const elRef = useRef<HTMLDivElement>(null);
 	const [open, setOpen] = useState(false);
+	// const [hasRoot, setHasRoot] = useState(false);
 
 	const hasExpanded = activeKeys.includes(value);
 
@@ -54,7 +56,7 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 			{...props}
 		>
 			{open && (
-				<div ref={refFn} className={className}>
+				<div ref={refFn} className={cn('pb-2', className)}>
 					{children}
 				</div>
 			)}
