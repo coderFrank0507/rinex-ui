@@ -5,7 +5,7 @@ import type { RootProps } from '@rspress/core/theme';
 export function Root({ children }: RootProps) {
 	const dark = document.documentElement.classList.contains('dark');
 	return (
-		<ConfigProvider primaryColor="green" dark={dark}>
+		<ConfigProvider primaryColor="blue" dark={dark}>
 			{children}
 		</ConfigProvider>
 	);
