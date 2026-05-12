@@ -1,7 +1,7 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
-import { hasTargetChild } from '../_utils';
+import { cn, hasTargetChild } from '../_utils';
 import {
 	CollapseContext,
 	useCollapseContext,
@@ -42,7 +42,7 @@ const Collapse = ({
 			<div
 				data-slot="collapse-root"
 				style={{ marginLeft: level > 0 ? '16px' : 0 }}
-				className={className}
+				className={cn('w-full', className)}
 			>
 				{children}
 			</div>

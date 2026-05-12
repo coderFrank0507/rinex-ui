@@ -37,10 +37,10 @@ function App() {
 							Dark
 						</Button>
 					</div>
-					<AvatarTest />
+					{/* <AvatarTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
-					{/* <CollapseTest /> */}
+					<CollapseTest />
 					{/* <InputTest /> */}
 				</div>
 			</ConfigProvider>

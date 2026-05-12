@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
+import {
+	memo,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+	type PropsWithChildren
+} from 'react';
 import { useItemContext, useCollapseContext } from './hooks';
 import { cn } from '../_utils';
 
@@ -6,7 +14,7 @@ export interface CollapsePanelProps extends PropsWithChildren {
 	className?: string;
 }
 
-function CollapsePanel({ className, children, ...props }: CollapsePanelProps) {
+const CollapsePanel = memo(({ className, children, ...props }: CollapsePanelProps) => {
 	const { activeKeys, keepContent } = useCollapseContext();
 	const { value } = useItemContext();
 
@@ -36,17 +44,30 @@ function CollapsePanel({ className, children, ...props }: CollapsePanelProps) {
 		}
 	}, [hasExpanded, keepContent]);
 
-	const refFn = (el: HTMLDivElement | null) => {
-		if (el && hasExpanded) {
-			if (elRef.current) {
-				const { current: contentEl } = elRef;
-				contentEl.style.height = `${el.clientHeight}px`;
-				setTimeout(() => {
-					contentEl.style.height = 'auto';
-				}, 150);
+	const refFn = useCallback(
+		(el: HTMLDivElement | null) => {
+			if (el && hasExpanded) {
+				if (elRef.current) {
+					const { current: contentEl } = elRef;
+					contentEl.style.height = `${el.clientHeight}px`;
+					setTimeout(() => {
+						contentEl.style.height = 'auto';
+					}, 150);
+				}
 			}
-		}
-	};
+		},
+		[hasExpanded, elRef]
+	);
+
+	const child = useMemo(
+		() =>
+			open && (
+				<div ref={refFn} className={cn('pb-2', className)}>
+					{children}
+				</div>
+			),
+		[open, children, className, refFn]
+	);
 
 	return (
 		<div
@@ -55,14 +76,10 @@ function CollapsePanel({ className, children, ...props }: CollapsePanelProps) {
 			className={'h-0 overflow-clip transition-[height,opacity] duration-150 ease-in-out'}
 			{...props}
 		>
-			{open && (
-				<div ref={refFn} className={cn('pb-2', className)}>
-					{children}
-				</div>
-			)}
+			{child}
 		</div>
 	);
-}
+});
 
 CollapsePanel.displayName = 'Collapse.Panel';
 

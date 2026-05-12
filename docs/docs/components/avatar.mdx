@@ -1,11 +1,143 @@
 # Avatar 头像
 
+### 代码演示
+
+#### 基础
+使用`shape`来设置形状
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
 const App = () => {
-  return <Avatar />
+  return (
+    <div className="space-x-4">
+      <Avatar />
+      <Avatar src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/001.jpg" />
+      <Avatar
+        shape="square"
+        src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/002.jpg"
+      />
+    </div>
+  )
 }
 
 export default App;
 ```
+
+#### 自定义大小
+```tsx preview
+import { Avatar } from "rinex-ui";
+
+const App = () => {
+  return (
+    <div className="flex gap-4 items-center">
+      <Avatar size={30} />
+      <Avatar size={40} />
+      <Avatar size={50} />
+    </div>
+  )
+}
+
+export default App;
+```
+
+#### 回退行为
+图片加载失败时的回退行为。
+```tsx preview
+import { Avatar } from "rinex-ui";
+
+const App = () => {
+  return (
+    <div className="space-x-4">
+      <Avatar
+        src="https://xxx.jpg"
+        fallback={<img src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/empty-avatar.png"/>}
+      />
+    </div>
+  )
+}
+
+export default App;
+```
+
+#### 适应容器
+当使用图片作为用户头像时，设置该图片如何在容器中展示。与[object-fit](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit) 属性一致
+```tsx preview
+import { Avatar } from "rinex-ui";
+
+const App = () => {
+  return (
+    <div className="flex gap-4 text-gray-400">
+      <div>
+        <p className="text-center text-sm">fill</p>
+        <Avatar
+          fit="fill"
+          size={60}
+          src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg"
+        />
+      </div>
+      <div>
+        <p className="text-center text-sm">contain</p>
+        <Avatar
+          fit="contain"
+          size={60}
+          src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg"
+        />
+      </div>
+      <div>
+        <p className="text-center text-sm">cover</p>
+        <Avatar
+          fit="cover"
+          size={60}
+          src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg"
+        />
+      </div>
+      <div>
+        <p className="text-center text-sm">none</p>
+        <Avatar
+          fit="none"
+          size={60}
+          src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg"
+        />
+      </div>
+      <div>
+        <p className="text-center text-sm">scale-down</p>
+        <Avatar
+          fit="scale-down"
+          size={60}
+          src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg"
+        />
+      </div>
+    </div>
+  )
+}
+
+export default App;
+```
+
+#### 头像组
+```tsx preview
+import { Avatar } from "rinex-ui";
+
+const App = () => {
+  return (
+    <Avatar.Group>
+      <Avatar />
+      <Avatar src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/001.jpg" />
+      <Avatar src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/002.jpg" />
+      <Avatar src="https://rinex-ui-1316325187.cos.ap-beijing.myqcloud.com/images/fill.jpg" />
+    </Avatar.Group>
+  )
+}
+
+export default App;
+```
+
+### Props
+| 属性 | 说明 | 类型 | 默认值 |
+|--|--|:--:|:--:|
+|className|自定义类名|string|-|
+|src|图片地址|string|-|
+|fit|图片缩放模式|`fill` `contain` `cover` `none` `scale-down`|cover|
+|size|头像大小|number|40|
+|shape|头像形状|`circle` `square`|circle|
+|fallback|头像失败时的回退内容|ReactNode|-|

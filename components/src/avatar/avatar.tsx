@@ -7,12 +7,19 @@ import { useConfigContext } from '../_utils/hooks';
 
 export interface AvatarProps extends PropsWithChildren {
 	className?: string;
+	/** 图片地址 */
 	src?: string;
+	/** 图片缩放模式 */
 	fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+	/** 头像大小 */
 	size?: number;
+	/** 头像形状 */
 	shape?: 'circle' | 'square';
+	/** 头像失败时的回退内容 */
 	fallback?: React.ReactNode;
+	/** 图片加载成功时的回调函数 */
 	onLoad?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
+	/** 图片加载失败时的回调函数 */
 	onError?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 }
 
