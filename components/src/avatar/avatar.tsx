@@ -1,7 +1,9 @@
 'use client';
 
-import { type PropsWithChildren } from 'react';
+import { useContext, useState, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
+import { AvatarContext } from './avatar-group';
+import { useConfigContext } from '../_utils/hooks';
 
 export interface AvatarProps extends PropsWithChildren {
 	className?: string;
@@ -9,6 +11,7 @@ export interface AvatarProps extends PropsWithChildren {
 	fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 	size?: number;
 	shape?: 'circle' | 'square';
+	fallback?: React.ReactNode;
 	onLoad?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 	onError?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 }
@@ -20,14 +23,40 @@ const Avatar = ({
 	fit = 'cover',
 	size = 40,
 	shape = 'circle',
+	fallback,
 	onLoad,
 	onError
 }: AvatarProps) => {
+	const context = useConfigContext();
+	const { group } = useContext(AvatarContext);
+
+	const [isError, setIsError] = useState(false);
+
+	const onImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+		setIsError(true);
+		onError?.(e);
+	};
+
+	const child = src ? (
+		<img
+			className="size-full"
+			src={src}
+			alt="avatar"
+			style={{ objectFit: fit }}
+			onLoad={onLoad}
+			onError={onImageError}
+		/>
+	) : (
+		children
+	);
+
 	return (
 		<span
 			className={cn(
 				'align-top inline-flex justify-center items-center rounded-full bg-gray-300 overflow-hidden text-white text-sm leading-none',
 				{
+					'ring-1': group,
+					'ring-black': context.dark,
 					'rounded-full': shape === 'circle',
 					'rounded-md': shape === 'square'
 				},
@@ -35,18 +64,7 @@ const Avatar = ({
 			)}
 			style={{ width: size, height: size }}
 		>
-			{src ? (
-				<img
-					className="size-full"
-					src={src}
-					alt="avatar"
-					style={{ objectFit: fit }}
-					onLoad={onLoad}
-					onError={onError}
-				/>
-			) : (
-				children
-			)}
+			{isError ? fallback : child}
 		</span>
 	);
 };
