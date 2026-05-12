@@ -8,9 +8,12 @@ import { type BaseInputProps, type BaseInputRef, BaseInput } from './base-input'
 import { InputContext } from './context';
 import { useConfigContext } from '../_utils/hooks';
 
-interface InputProps extends BaseInputProps {
+export interface InputProps extends BaseInputProps {
+	/** 是否允许清除输入内容 */
 	allowClear?: boolean;
+	/** 输入框前缀 */
 	prefix?: React.ReactNode;
+	/** 输入框后缀 */
 	suffix?: React.ReactNode;
 }
 
@@ -62,4 +65,6 @@ const Input = forwardRef((inputProps: InputProps, ref) => {
 	return <BaseInput base ref={ref} baseInputRef={baseInputRef} {...props} />;
 });
 
-export default Input;
+Input.displayName = 'Input';
+
+export { Input };

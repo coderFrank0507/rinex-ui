@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { useItemContext, useCollapseContext } from './hooks';
 import { cn } from '../_utils';
 
-interface CollapsePanelProps extends PropsWithChildren {
+export interface CollapsePanelProps extends PropsWithChildren {
 	className?: string;
 }
 
@@ -66,4 +66,4 @@ function CollapsePanel({ className, children, ...props }: CollapsePanelProps) {
 
 CollapsePanel.displayName = 'Collapse.Panel';
 
-export default CollapsePanel;
+export { CollapsePanel };

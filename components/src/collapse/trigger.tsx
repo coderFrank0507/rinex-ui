@@ -3,7 +3,7 @@ import { cn } from '../_utils';
 import { ChevronRight } from 'lucide-react';
 import { useItemContext, useCollapseContext } from './hooks';
 
-interface CollapseTriggerProps extends PropsWithChildren {
+export interface CollapseTriggerProps extends PropsWithChildren {
 	className?: string;
 	/** 自定义触发器图标 */
 	triggerIcon?: React.ReactNode;
@@ -61,4 +61,4 @@ function CollapseTrigger({
 
 CollapseTrigger.displayName = 'Collapse.Trigger';
 
-export default CollapseTrigger;
+export { CollapseTrigger };

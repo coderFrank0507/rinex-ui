@@ -24,4 +24,6 @@ function ConfigProvider({
 	);
 }
 
+ConfigProvider.displayName = 'ConfigProvider';
+
 export default ConfigProvider;

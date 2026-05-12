@@ -9,7 +9,7 @@ import {
 	type CollapseContextProps
 } from './hooks';
 
-interface CollapseProps extends PropsWithChildren, CollapseContextProps {
+export interface CollapseProps extends PropsWithChildren, CollapseContextProps {
 	/** 自定义类名 */
 	className?: string;
 	/** 展开的项的 key 数组 */
@@ -52,4 +52,4 @@ const Collapse = ({
 
 Collapse.displayName = 'Collapse';
 
-export default Collapse;
+export { Collapse };

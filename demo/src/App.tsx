@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Button, ConfigProvider } from 'rinex-ui';
+import AvatarTest from './test/avatar';
 import ButtonTest from './test/button';
-import InputTest from './test/input';
 // import ColorTest from './test/color';
 import CollapseTest from './test/collapse';
+import InputTest from './test/input';
 
 function App() {
 	const [color, setColor] = useState('green');
 	const [dark, setDark] = useState(false);
 
 	return (
-		<div className="h-screen dark:bg-[#282c34]">
+		<div className="h-screen dark:bg-[#282c34] flex justify-end">
 			<ConfigProvider primaryColor={color} dark={dark}>
 				<div className="p-10 space-y-4">
 					<div className="flex gap-4">
@@ -36,10 +37,11 @@ function App() {
 							Dark
 						</Button>
 					</div>
+					<AvatarTest />
 					{/* <ButtonTest /> */}
-					{/* <InputTest /> */}
 					{/* <ColorTest /> */}
-					<CollapseTest />
+					{/* <CollapseTest /> */}
+					{/* <InputTest /> */}
 				</div>
 			</ConfigProvider>
 		</div>

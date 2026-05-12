@@ -2,7 +2,7 @@ import { type PropsWithChildren } from 'react';
 import { cn, hasTargetChild } from '../_utils';
 import { ItemContext } from './hooks';
 
-interface CollapseItemProps extends PropsWithChildren {
+export interface CollapseItemProps extends PropsWithChildren {
 	className?: string;
 	value: string;
 	disabled?: boolean;
@@ -36,4 +36,4 @@ function CollapseItem({
 
 CollapseItem.displayName = 'Collapse.Item';
 
-export default CollapseItem;
+export { CollapseItem };

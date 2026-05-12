@@ -1,7 +1,7 @@
-import InternalCollapse from './collapse';
-import CollapseItem from './item';
-import CollapseTrigger from './trigger';
-import CollapsePanel from './panel';
+import { Collapse as InternalCollapse, type CollapseProps } from './collapse';
+import { CollapseItem, type CollapseItemProps } from './item';
+import { CollapseTrigger, type CollapseTriggerProps } from './trigger';
+import { CollapsePanel, type CollapsePanelProps } from './panel';
 
 const Collapse = InternalCollapse as typeof InternalCollapse & {
 	Item: typeof CollapseItem;
@@ -13,4 +13,10 @@ Collapse.Item = CollapseItem;
 Collapse.Trigger = CollapseTrigger;
 Collapse.Panel = CollapsePanel;
 
-export default Collapse;
+export {
+	Collapse,
+	type CollapseProps,
+	type CollapseItemProps,
+	type CollapseTriggerProps,
+	type CollapsePanelProps
+};

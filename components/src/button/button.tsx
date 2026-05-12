@@ -6,7 +6,7 @@ import { useConfigContext } from '../_utils/hooks';
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-interface ButtonProps
+export interface ButtonProps
 	extends PropsWithChildren, ButtonVariantProps, React.ComponentProps<'button'> {
 	className?: string;
 	danger?: boolean;
@@ -36,4 +36,6 @@ const Button = memo(({ children, variant, size, danger, className, ...props }: B
 	);
 });
 
-export default Button;
+Button.displayName = 'Button';
+
+export { Button };

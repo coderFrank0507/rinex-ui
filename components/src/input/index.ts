@@ -1,4 +1,4 @@
-import InternalInput from './input';
+import { Input as InternalInput, type InputProps } from './input';
 import { InputSlot } from './input-slot';
 
 type InternalInputType = typeof InternalInput & {
@@ -9,4 +9,4 @@ const Input = InternalInput as InternalInputType;
 
 Input.Slot = InputSlot;
 
-export default Input;
+export { Input, type InputProps };
