@@ -16,9 +16,9 @@ function CollapseItem({
 	...props
 }: CollapseItemProps) {
 	const hasTrigger = hasTargetChild(children, 'Collapse.Item', 'Collapse.Trigger');
-	const hasContent = hasTargetChild(children, 'Collapse.Item', 'Collapse.Content');
+	const hasPanel = hasTargetChild(children, 'Collapse.Item', 'Collapse.Panel');
 
-	return hasTrigger || hasContent ? (
+	return hasTrigger || hasPanel ? (
 		<ItemContext.Provider value={{ value, disabled }}>
 			<div
 				data-slot="collapse-item"

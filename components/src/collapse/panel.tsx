@@ -2,11 +2,11 @@ import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
 import { useItemContext, useCollapseContext } from './hooks';
 import { cn } from '../_utils';
 
-interface CollapseContentProps extends PropsWithChildren {
+interface CollapsePanelProps extends PropsWithChildren {
 	className?: string;
 }
 
-function CollapseContent({ className, children, ...props }: CollapseContentProps) {
+function CollapsePanel({ className, children, ...props }: CollapsePanelProps) {
 	const { activeKeys, keepContent } = useCollapseContext();
 	const { value } = useItemContext();
 
@@ -64,6 +64,6 @@ function CollapseContent({ className, children, ...props }: CollapseContentProps
 	);
 }
 
-CollapseContent.displayName = 'Collapse.Content';
+CollapsePanel.displayName = 'Collapse.Panel';
 
-export default CollapseContent;
+export default CollapsePanel;

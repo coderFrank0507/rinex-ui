@@ -26,7 +26,7 @@ const CollapseTest = () => {
 				{list.map((item) => (
 					<Collapse.Item key={item.value} value={item.value}>
 						<Collapse.Trigger>{item.title}</Collapse.Trigger>
-						<Collapse.Content>{item.content}</Collapse.Content>
+						<Collapse.Panel>{item.content}</Collapse.Panel>
 					</Collapse.Item>
 				))}
 			</Collapse>
