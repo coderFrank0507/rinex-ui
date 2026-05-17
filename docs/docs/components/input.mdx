@@ -8,10 +8,65 @@
 import { Input } from 'rinex-ui';
 
 export default function App() {
-	return (
-		<div>
-			<Input placeholder="请输入" />
-		</div>
-	);
+  return (
+    <div>
+      <Input placeholder="请输入" />
+    </div>
+  );
+}
+```
+
+#### 禁用状态
+通过 disabled 属性指定是否禁用 input 组件
+```tsx preview
+import { Input } from 'rinex-ui';
+
+export default function App() {
+  return (
+    <div>
+      <Input disabled placeholder="请输入" />
+    </div>
+  );
+}
+```
+
+#### 可清空
+```tsx preview
+import { Input } from 'rinex-ui';
+
+export default function App() {
+  return (
+    <div>
+      <Input allowClear placeholder="请输入" />
+    </div>
+  );
+}
+```
+
+#### 前后插槽
+通过`prefix`和`suffix`属性指定前缀和后缀插槽
+```tsx preview
+import { Input } from 'rinex-ui';
+import { User, Search } from 'lucide-react';
+
+export default function App() {
+  return (
+    <div>
+      <Input 
+        allowClear
+        placeholder="请输入"
+        prefix={
+					<Input.Slot className="border-r border-(--ru-border-color) mr-2">
+						<User size={20} />
+					</Input.Slot>
+				}
+				suffix={
+					<Input.Slot className="bg-gray-100">
+						<Search size={20} />
+					</Input.Slot>
+				}
+       />
+    </div>
+  );
 }
 ```

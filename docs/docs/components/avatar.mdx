@@ -7,7 +7,7 @@
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
-const App = () => {
+export default function App() {
   return (
     <div className="space-x-4">
       <Avatar />
@@ -19,15 +19,13 @@ const App = () => {
     </div>
   )
 }
-
-export default App;
 ```
 
 #### 自定义大小
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
-const App = () => {
+export default function App() {
   return (
     <div className="flex gap-4 items-center">
       <Avatar size={30} />
@@ -36,8 +34,6 @@ const App = () => {
     </div>
   )
 }
-
-export default App;
 ```
 
 #### 回退行为
@@ -45,7 +41,7 @@ export default App;
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
-const App = () => {
+export default function App() {
   return (
     <div className="space-x-4">
       <Avatar
@@ -55,8 +51,6 @@ const App = () => {
     </div>
   )
 }
-
-export default App;
 ```
 
 #### 适应容器
@@ -64,7 +58,7 @@ export default App;
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
-const App = () => {
+export default function App() {
   return (
     <div className="flex gap-4 text-gray-400">
       <div>
@@ -110,15 +104,13 @@ const App = () => {
     </div>
   )
 }
-
-export default App;
 ```
 
 #### 头像组
 ```tsx preview
 import { Avatar } from "rinex-ui";
 
-const App = () => {
+export default function App() {
   return (
     <Avatar.Group>
       <Avatar />
@@ -128,8 +120,6 @@ const App = () => {
     </Avatar.Group>
   )
 }
-
-export default App;
 ```
 
 ### Props

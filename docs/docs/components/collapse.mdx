@@ -7,43 +7,133 @@
 import { Collapse } from "rinex-ui";
 
 const list = [
-	{
-		id: '1',
-		title: 'How do i place an order?',
-		content:
-			"Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase."
-	},
-	{
-		id: '2',
-		title: 'Can i modify or cancel my order?',
-		content:
-			"Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes."
-	},
-	{
-		id: '3',
-		title: 'What payment methods do you accept?',
-		content: 'We accept all major credit cards, including Visa, Mastercard, and American Express.'
-	},
-	{
-		id: '4',
-		title: 'How much does shipping cost?',
-		content:
-			'Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.'
-	}
+  { 
+    id: '1',
+    title: 'How do i place an order?',
+    content: "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase."
+  },
+  { 
+    id: '2',
+    title: 'Can i modify or cancel my order?',
+    content: "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes."
+  },
+  { 
+    id: '3',
+    title: 'What payment methods do you accept?',
+    content: 'We accept all major credit cards, including Visa, Mastercard, and American Express.'
+  },
+  { 
+    id: '4',
+    title: 'How much does shipping cost?',
+    content: 'Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.'
+  }
 ];
 
-const App = () => {
+export default function App() {
   return (
-    <Collapse arrowPlacement="left">
-				{list.map((item) => (
-					<Collapse.Item key={item.id} value={item.id}>
-						<Collapse.Trigger>{item.title}</Collapse.Trigger>
-						<Collapse.Panel>{item.content}</Collapse.Panel>
-					</Collapse.Item>
-				))}
-			</Collapse>
+    <Collapse>
+      {list.map((item) => (
+        <Collapse.Item key={item.id} value={item.id}>
+          <Collapse.Trigger>{item.title}</Collapse.Trigger>
+          <Collapse.Panel>{item.content}</Collapse.Panel>
+        </Collapse.Item>
+      ))}
+    </Collapse>
   )
 }
-
-export default App;
 ```
+
+#### 手风琴效果
+每次只能展开一个面板
+```tsx preview
+import { Collapse } from "rinex-ui";
+
+const list = [
+  { 
+    id: '1',
+    title: 'How do i place an order?',
+    content: "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase."
+  },
+  { 
+    id: '2',
+    title: 'Can i modify or cancel my order?',
+    content: "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes."
+  },
+  { 
+    id: '3',
+    title: 'What payment methods do you accept?',
+    content: 'We accept all major credit cards, including Visa, Mastercard, and American Express.'
+  },
+  { 
+    id: '4',
+    title: 'How much does shipping cost?',
+    content: 'Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.'
+  }
+];
+
+export default function App() {
+  return (
+    <Collapse accordion>
+      {list.map((item) => (
+        <Collapse.Item key={item.id} value={item.id}>
+          <Collapse.Trigger>{item.title}</Collapse.Trigger>
+          <Collapse.Panel>{item.content}</Collapse.Panel>
+        </Collapse.Item>
+      ))}
+    </Collapse>
+  )
+}
+```
+
+#### 自定义标题
+通过`triggerIcon`自定义展开图标，`triggerExtra`自定义额外内容
+```tsx preview
+import { Collapse } from "rinex-ui";
+import { ArrowRightToLine, Github } from 'lucide-react';
+
+const list = [
+  { 
+    id: '1',
+    title: 'How do i place an order?',
+    content: "Browse our products, add items to your cart, and proceed to checkout. You'll need to provide shipping and payment information to complete your purchase."
+  },
+  { 
+    id: '2',
+    title: 'Can i modify or cancel my order?',
+    content: "Yes, you can modify or cancel your order before it's shipped. Once your order is processed, you can't make changes."
+  },
+  { 
+    id: '3',
+    title: 'What payment methods do you accept?',
+    content: 'We accept all major credit cards, including Visa, Mastercard, and American Express.'
+  },
+  { 
+    id: '4',
+    title: 'How much does shipping cost?',
+    content: 'Shipping costs vary based on your location and the size of your order. We offer free shipping for orders over $50.'
+  }
+];
+
+export default function App() {
+  return (
+    <Collapse accordion>
+      {list.map((item) => (
+        <Collapse.Item key={item.id} value={item.id}>
+          <Collapse.Trigger triggerIcon={<ArrowRightToLine size={18} />} triggerExtra={<Github size={18} />}>{item.title}</Collapse.Trigger>
+          <Collapse.Panel>{item.content}</Collapse.Panel>
+        </Collapse.Item>
+      ))}
+    </Collapse>
+  )
+}
+```
+
+### Props
+| 属性 | 说明 | 类型 | 默认值 |
+|--|--|:--:|:--:|
+|className|自定义类名|string|-|
+|activeKeys|展开的项的 value 数组|string[]|-|
+|onChange|展开项改变时的回调函数|(keys: string[]) => void|-|
+|keepContent|是否保留内容|boolean|false|
+|single|是否只展开一个项|boolean|false|
+|arrowPlacement|箭头位置|string|"left"|

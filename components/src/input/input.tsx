@@ -1,68 +1,71 @@
 'use client';
 
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { inputVariants } from './variants';
 import { cn } from '../_utils';
-import { X } from 'lucide-react';
-import { type BaseInputProps, type BaseInputRef, BaseInput } from './base-input';
-import { InputContext } from './context';
-import { useConfigContext } from '../_utils/hooks';
+import type { VariantProps } from 'class-variance-authority';
+import { resolveOnChange } from './utils';
 
-export interface InputProps extends BaseInputProps {
-	/** 是否允许清除输入内容 */
-	allowClear?: boolean;
-	/** 输入框前缀 */
-	prefix?: React.ReactNode;
-	/** 输入框后缀 */
-	suffix?: React.ReactNode;
+export type InputVariantProps = VariantProps<typeof inputVariants>;
+
+export interface InputProps
+	extends InputVariantProps, Omit<React.ComponentProps<'input'>, 'size' | 'disabled'> {
+	className?: string;
+	disabled?: boolean;
 }
 
-const Input = forwardRef((inputProps: InputProps, ref) => {
-	const { className, allowClear, prefix, suffix, ...props } = inputProps;
-	const context = useConfigContext();
+export interface BaseInputRef {
+	handleReset: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
 
-	const [showClearIcon, setShowClearIcon] = useState(false);
-	const baseInputRef = useRef<BaseInputRef>(null);
+interface BaseInputExtend {
+	inputRef?: React.Ref<BaseInputRef>;
+}
 
-	useEffect(() => {
-		if (allowClear) {
-			queueMicrotask(() => {
-				setShowClearIcon(Boolean(props.value));
-			});
+const Input = forwardRef((props: InputProps & BaseInputExtend, ref) => {
+	const { className, size, onChange, inputRef: baseInputRef, ...inputProps } = props;
+
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		if (inputRef.current) {
+			inputRef.current.value = '';
+			resolveOnChange(inputRef.current, event, onChange);
 		}
-	}, [allowClear, props.value]);
+	};
 
-	if (allowClear || prefix || suffix) {
-		const clearIcon = showClearIcon && !props.disabled && !props.readOnly && (
-			<button
-				type="button"
-				tabIndex={-1}
-				className={cn('pl-1', !suffix && 'pr-2')}
-				onClick={(e) => baseInputRef.current?.handleReset(e)}
-			>
-				<X className="cursor-pointer size-4 opacity-50" />
-			</button>
-		);
+	const triggerChange = (e: React.ChangeEvent<HTMLInputElement>, currentValue: string) => {
+		if (inputRef.current) {
+			resolveOnChange(inputRef.current, e, onChange, currentValue);
+		}
+	};
 
-		return (
-			<InputContext.Provider value={{ size: props.size }}>
-				<div
-					tabIndex={-1}
-					data-slot="input"
-					className={cn(
-						inputVariants({ size: props.size || context.size, disabled: props.disabled, className })
-					)}
-				>
-					{prefix}
-					<BaseInput ref={ref} baseInputRef={baseInputRef} {...props} />
-					{clearIcon}
-					{suffix}
-				</div>
-			</InputContext.Provider>
-		);
-	}
+	useImperativeHandle(baseInputRef, () => ({
+		handleReset
+	}));
 
-	return <BaseInput base ref={ref} baseInputRef={baseInputRef} {...props} />;
+	return (
+		<input
+			tabIndex={inputProps.disabled || inputProps.readOnly ? -1 : 0}
+			data-slot="input"
+			className={cn(
+				inputVariants({ size }),
+				{
+					'hover:border-[var(--ru-border-color)]': inputProps.disabled
+				},
+				className
+			)}
+			ref={(node) => {
+				inputRef.current = node;
+				if (typeof ref === 'function') ref(node);
+				else if (ref) ref.current = node;
+			}}
+			onChange={(e) => {
+				triggerChange(e, e.target.value);
+			}}
+			{...inputProps}
+		/>
+	);
 });
 
 Input.displayName = 'Input';

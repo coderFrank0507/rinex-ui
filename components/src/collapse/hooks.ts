@@ -4,8 +4,8 @@ import { createContext, useContext, useState } from 'react';
 export interface CollapseContextProps {
 	/** 是否保持内容 */
 	keepContent?: boolean;
-	/** 是否为单面板模式 */
-	single?: boolean;
+	/** 手风琴效果 */
+	accordion?: boolean;
 	/** 箭头位置 */
 	arrowPlacement?: 'left' | 'right';
 }
@@ -19,7 +19,7 @@ interface CollapseContextValue {
 export const CollapseContext = createContext<CollapseContextProps & CollapseContextValue>({
 	level: 0,
 	keepContent: false,
-	single: false,
+	accordion: false,
 	arrowPlacement: 'left',
 	activeKeys: [],
 	setActiveKeys: () => {}
@@ -39,14 +39,14 @@ export const useItemContext = () => useContext(ItemContext);
 export const useCollapseValues = (
 	values?: string[],
 	onChange?: (keys: string[]) => void,
-	single?: boolean
+	accordion?: boolean
 ) => {
 	const [activeKeys, setActiveKeys] = useState<string[]>([]);
 
 	const toggle = (key: string) => {
 		const prevKeys = values || activeKeys;
 		const setValues = values ? onChange : setActiveKeys;
-		if (single) {
+		if (accordion) {
 			setValues?.(key === prevKeys[0] ? [] : [key]);
 		} else {
 			setValues?.(prevKeys.includes(key) ? prevKeys.filter((k) => k !== key) : [...prevKeys, key]);

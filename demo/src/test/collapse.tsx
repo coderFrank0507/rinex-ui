@@ -33,7 +33,7 @@ const CollapseTest = () => {
 
 	return (
 		<div className="w-96 border">
-			<Collapse keepContent arrowPlacement="left">
+			<Collapse keepContent accordion>
 				{list.map((item) => (
 					<Collapse.Item key={item.id} value={item.id}>
 						<Collapse.Trigger>{item.title}</Collapse.Trigger>

@@ -23,6 +23,7 @@ const Collapse = ({
 	activeKeys: initialActiveKeys,
 	children,
 	onChange,
+	arrowPlacement = 'left',
 	...contextProps
 }: CollapseProps) => {
 	const { level } = useCollapseContext();
@@ -30,19 +31,19 @@ const Collapse = ({
 	const { activeKeys, setActiveKeys } = useCollapseValues(
 		initialActiveKeys,
 		onChange,
-		contextProps.single
+		contextProps.accordion
 	);
 
 	hasTargetChild(children, 'Collapse', 'Collapse.Item');
 
 	return (
 		<CollapseContext.Provider
-			value={{ activeKeys, setActiveKeys, level: level + 1, ...contextProps }}
+			value={{ activeKeys, setActiveKeys, arrowPlacement, level: level + 1, ...contextProps }}
 		>
 			<div
 				data-slot="collapse-root"
 				style={{ marginLeft: level > 0 ? '16px' : 0 }}
-				className={cn('w-full', className)}
+				className={cn('w-full overflow-hidden', className)}
 			>
 				{children}
 			</div>

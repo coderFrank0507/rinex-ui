@@ -39,17 +39,19 @@ function CollapseTrigger({
 		<div
 			data-slot="collapse-trigger"
 			className={cn(
-				'py-2 flex justify-between gap-2 items-center cursor-pointer font-normal',
+				'py-2 flex justify-between gap-2 items-center cursor-pointer font-normal overflow-hidden',
 				{
 					'text-[var(--ru-disabled-color)]': disabled,
 					'cursor-not-allowed': disabled
 				},
 				className
 			)}
-			onClick={() => !disabled && setActiveKeys(value)}
 			{...props}
 		>
-			<div className={cn('flex-1 flex items-center gap-2', { 'hover:underline': !disabled })}>
+			<div
+				className={cn('flex-1 flex items-center gap-2', { 'hover:underline': !disabled })}
+				onClick={() => !disabled && setActiveKeys(value)}
+			>
 				{arrowPlacement === 'left' && TriggerIcon}
 				<span className="flex-1">{children}</span>
 				{arrowPlacement === 'right' && TriggerIcon}

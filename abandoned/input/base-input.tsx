@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { baseInputVariants } from './variants';
 import { cn } from '../_utils';
 import { type VariantProps } from 'class-variance-authority';
@@ -23,10 +23,22 @@ export interface BaseInputRef {
 interface BaseInputExtend {
 	baseInputRef?: React.Ref<BaseInputRef>;
 	base?: boolean;
+	__setHasValue__?: (hasValue: boolean) => void;
+	__rightPadding__?: boolean;
 }
 
 export const BaseInput = forwardRef((props: BaseInputProps & BaseInputExtend, ref) => {
-	const { className, size, onChange, baseInputRef, base = false, ...inputProps } = props;
+	const {
+		className,
+		size,
+		onChange,
+		baseInputRef,
+		base = false,
+		__setHasValue__,
+		__rightPadding__,
+		...inputProps
+	} = props;
+
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -46,17 +58,31 @@ export const BaseInput = forwardRef((props: BaseInputProps & BaseInputExtend, re
 		handleReset
 	}));
 
+	useEffect(() => {
+		if (inputProps.value) __setHasValue__?.(true);
+	}, []);
+
 	return (
 		<input
-			tabIndex={props.disabled || props.readOnly ? -1 : 0}
+			tabIndex={inputProps.disabled || inputProps.readOnly ? -1 : 0}
 			data-slot="input"
-			className={cn(baseInputVariants({ base, size, className }))}
+			className={cn(
+				baseInputVariants({ base, size }),
+				{
+					'pr-2': !__rightPadding__,
+					'hover:border-[var(--ru-border-color)]': inputProps.disabled
+				},
+				className
+			)}
 			ref={(node) => {
 				inputRef.current = node;
 				if (typeof ref === 'function') ref(node);
 				else if (ref) ref.current = node;
 			}}
-			onChange={(e) => triggerChange(e, e.target.value)}
+			onChange={(e) => {
+				__setHasValue__?.(Boolean(e.target.value));
+				triggerChange(e, e.target.value);
+			}}
 			{...inputProps}
 		/>
 	);

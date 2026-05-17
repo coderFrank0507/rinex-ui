@@ -40,8 +40,8 @@ function App() {
 					{/* <AvatarTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
-					<CollapseTest />
-					{/* <InputTest /> */}
+					{/* <CollapseTest /> */}
+					<InputTest />
 				</div>
 			</ConfigProvider>
 		</div>
