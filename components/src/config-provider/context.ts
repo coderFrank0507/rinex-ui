@@ -1,9 +1,10 @@
 import { createContext } from 'react';
 import type { ThemeColors } from '../_utils/theme';
+import type { Size } from '../_public/types';
 
 interface ConfigProviderProps {
 	__used__?: boolean;
-	size?: 'lg' | 'default' | 'sm';
+	size?: Size;
 	/**
 	 * 主题色，内置 blue | green | orange | rose | violet 默认：blue
 	 * 可自定义 16进制色值
@@ -15,7 +16,7 @@ interface ConfigProviderProps {
 export const defaultValues: ConfigProviderProps = {
 	__used__: false,
 	size: 'default',
-	primaryColor: 'blue',
+	primaryColor: 'default',
 	dark: false
 };
 

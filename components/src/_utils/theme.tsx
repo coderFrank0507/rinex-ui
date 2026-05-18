@@ -35,9 +35,17 @@ export function isHexColor(str: string) {
 
 const levels = [1, 0.8, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05];
 
-export type ThemeColors = 'blue' | 'green' | 'orange' | 'rose' | 'violet' | (string & {});
+export type ThemeColors =
+	| 'default'
+	| 'blue'
+	| 'green'
+	| 'orange'
+	| 'rose'
+	| 'violet'
+	| (string & {});
 
 export const colorMap: Record<ThemeColors, string> = {
+	default: '#1c1c1c',
 	blue: '#1447e6',
 	green: '#5ea600',
 	orange: '#f64900',

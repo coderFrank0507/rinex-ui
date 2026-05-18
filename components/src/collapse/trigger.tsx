@@ -29,7 +29,7 @@ function CollapseTrigger({
 				data-slot="collapse-trigger-icon"
 				className={cn('transition-transform duration-200', { 'rotate-90': open })}
 			>
-				{triggerIcon || <ChevronRight size={18} />}
+				{triggerIcon || <ChevronRight size={16} />}
 			</div>
 		),
 		[triggerIcon, open]

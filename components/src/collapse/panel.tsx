@@ -73,7 +73,9 @@ const CollapsePanel = memo(({ className, children, ...props }: CollapsePanelProp
 		<div
 			data-slot="collapse-content"
 			ref={elRef}
-			className={'h-0 overflow-clip transition-[height,opacity] duration-150 ease-in-out'}
+			className={
+				'h-0 font-light overflow-clip transition-[height,opacity] duration-150 ease-in-out'
+			}
 			{...props}
 		>
 			{child}

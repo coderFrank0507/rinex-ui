@@ -7,7 +7,7 @@ import CollapseTest from './test/collapse';
 import InputTest from './test/input';
 
 function App() {
-	const [color, setColor] = useState('green');
+	const [color, setColor] = useState('default');
 	const [dark, setDark] = useState(false);
 
 	return (
@@ -15,9 +15,13 @@ function App() {
 			<ConfigProvider primaryColor={color} dark={dark}>
 				<div className="p-10 space-y-4">
 					<div className="flex gap-4">
-						<Button onClick={() => setColor('blue')}>Blue</Button>
+						<Button size="sm" onClick={() => setColor('default')}>
+							Default
+						</Button>
 						<Button onClick={() => setColor('green')}>Green</Button>
-						<Button onClick={() => setColor('violet')}>Violet</Button>
+						<Button size="lg" onClick={() => setColor('violet')}>
+							Violet
+						</Button>
 						<Button
 							variant={'primary'}
 							onClick={() => {
@@ -40,7 +44,7 @@ function App() {
 					{/* <AvatarTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
-					{/* <CollapseTest /> */}
+					<CollapseTest />
 					<InputTest />
 				</div>
 			</ConfigProvider>

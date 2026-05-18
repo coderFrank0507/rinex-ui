@@ -43,7 +43,7 @@ const Collapse = ({
 			<div
 				data-slot="collapse-root"
 				style={{ marginLeft: level > 0 ? '16px' : 0 }}
-				className={cn('w-full overflow-hidden', className)}
+				className={cn('w-full overflow-hidden text-sm', className)}
 			>
 				{children}
 			</div>

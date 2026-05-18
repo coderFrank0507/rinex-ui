@@ -6,7 +6,7 @@ import { colorMap, useThemeCSS } from '../_utils/theme';
 
 function ConfigProvider({
 	children,
-	primaryColor = colorMap.blue,
+	primaryColor = colorMap.default,
 	dark = false,
 	...props
 }: ConfigProviderProps & PropsWithChildren) {
