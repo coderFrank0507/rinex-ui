@@ -1,4 +1,5 @@
 export * from './avatar';
+export * from './badge';
 export * from './button';
 export * from './collapse';
 export { default as Color } from './color';

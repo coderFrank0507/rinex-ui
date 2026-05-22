@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, ConfigProvider } from 'rinex-ui';
 import AvatarTest from './test/avatar';
+import BadgeTest from './test/badge';
 import ButtonTest from './test/button';
 // import ColorTest from './test/color';
 import CollapseTest from './test/collapse';
@@ -42,6 +43,7 @@ function App() {
 						</Button>
 					</div>
 					{/* <AvatarTest /> */}
+					<BadgeTest />
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
 					<CollapseTest />
