@@ -32,7 +32,7 @@ export const controlVariants = cva(
 );
 
 export const thumbVariants = cva(
-	'inline-flex items-center justify-center text-sm mx-0.5 rounded-full bg-white transition duration-150 origin-center shadow-[0_0_6px_rgba(0,0,0,0.2)]',
+	'inline-flex items-center justify-center text-sm mx-0.5 rounded-full bg-white text-black transition duration-150 origin-center shadow-[0_0_6px_rgba(0,0,0,0.2)]',
 	{
 		variants: {
 			size: {
