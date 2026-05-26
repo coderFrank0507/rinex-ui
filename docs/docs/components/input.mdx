@@ -34,23 +34,9 @@ export default function App() {
 }
 ```
 
-#### 可清空
-
-```tsx preview
-import { Input } from 'rinex-ui';
-
-export default function App() {
-  return (
-    <div>
-      <Input allowClear placeholder="请输入" />
-    </div>
-  );
-}
-```
-
 #### 前后插槽
 
-通过`prefix`和`suffix`属性指定前缀和后缀插槽
+通过`InputGroup`组件配合`Prefix`和`Suffix`组件指定前后缀
 
 ```tsx preview
 import { InputGroup } from 'rinex-ui';

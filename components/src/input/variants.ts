@@ -8,10 +8,15 @@ export const inputVariants = cva(
 				lg: 'h-10 text-lg',
 				default: 'h-8',
 				sm: 'h-6 text-sm'
+			},
+			dark: {
+				true: 'disabled:bg-[#262626]',
+				false: 'disabled:bg-gray-100'
 			}
 		},
 		defaultVariants: {
-			size: 'default'
+			size: 'default',
+			dark: false
 		}
 	}
 );

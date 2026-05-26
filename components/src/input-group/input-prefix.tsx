@@ -17,10 +17,8 @@ const InputPrefix = ({ children, className, size, __isFirst }: InputPrefixProps)
 		<div
 			className={cn(
 				inputSlotVariants({ size }),
-				'border border-[var(--ru-border-color)] border-r-0 text-sm',
 				{
-					'text-white': dark,
-					'rounded-l-md': __isFirst
+					'text-white': dark
 				},
 				className
 			)}

@@ -17,10 +17,8 @@ const InputSuffix = ({ children, className, size, __isLast }: InputSuffixProps) 
 		<div
 			className={cn(
 				inputSlotVariants({ size }),
-				'border border-[var(--ru-border-color)] border-l-0',
 				{
-					'text-white': dark,
-					'rounded-r-md': __isLast
+					'text-white': dark
 				},
 				className
 			)}

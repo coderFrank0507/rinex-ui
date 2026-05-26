@@ -8,7 +8,7 @@ export default function InputTest() {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<Input placeholder="请输入" />
+			<Input disabled placeholder="请输入" />
 
 			<InputGroup>
 				<InputGroup.Prefix className="px-2">
