@@ -29,12 +29,12 @@ export const inputVariants = cva(
 	}
 );
 
-export const inputSlotVariants = cva('h-full flex items-center justify-center', {
+export const inputSlotVariants = cva('h-full flex shrink-0 items-center justify-center', {
 	variants: {
 		size: {
-			lg: 'min-w-10',
-			default: 'min-w-8',
-			sm: 'min-w-6 text-sm'
+			lg: 'min-w-10 w-fit',
+			default: 'min-w-8 w-fit',
+			sm: 'min-w-6 text-sm w-fit'
 		}
 	},
 	defaultVariants: {

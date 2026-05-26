@@ -1,9 +1,11 @@
 # Input 输入框
+
 ---
 
 ### 代码演示
 
 #### 基础
+
 ```tsx preview
 import { Input } from 'rinex-ui';
 
@@ -17,7 +19,9 @@ export default function App() {
 ```
 
 #### 禁用状态
+
 通过 disabled 属性指定是否禁用 input 组件
+
 ```tsx preview
 import { Input } from 'rinex-ui';
 
@@ -31,6 +35,7 @@ export default function App() {
 ```
 
 #### 可清空
+
 ```tsx preview
 import { Input } from 'rinex-ui';
 
@@ -44,29 +49,26 @@ export default function App() {
 ```
 
 #### 前后插槽
+
 通过`prefix`和`suffix`属性指定前缀和后缀插槽
+
 ```tsx preview
-import { Input } from 'rinex-ui';
+import { InputGroup } from 'rinex-ui';
 import { User, Search } from 'lucide-react';
 
 export default function App() {
   return (
-    <div>
-      <Input 
-        allowClear
-        placeholder="请输入"
-        prefix={
-					<Input.Slot className="border-r border-(--ru-border-color) mr-2">
-						<User size={20} />
-					</Input.Slot>
-				}
-				suffix={
-					<Input.Slot className="bg-gray-100">
-						<Search size={20} />
-					</Input.Slot>
-				}
-       />
-    </div>
+    <>
+      <InputGroup>
+        <InputGroup.Prefix className="px-2">
+          http://
+        </InputGroup.Prefix>
+        <InputGroup.Input placeholder="请输入" />
+        <InputGroup.Suffix>
+          <Search size={16} />
+        </InputGroup.Suffix>
+      </InputGroup>
+    </>
   );
 }
 ```

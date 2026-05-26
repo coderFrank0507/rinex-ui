@@ -48,7 +48,7 @@ function App() {
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
 					{/* <CollapseTest /> */}
-					{/* <InputTest /> */}
+					<InputTest />
 					<SwitchTest />
 				</div>
 			</ConfigProvider>

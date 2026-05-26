@@ -17,9 +17,9 @@ export default function SwitchTest() {
 					</Switch.Control>
 				</Switch>
 
-				<Switch size="lg">
+				<Switch>
 					{(checked) => (
-						<Switch.Control>
+						<Switch.Control className={checked ? 'bg-orange-500!' : ''}>
 							<Switch.Thumb>{checked ? <Power size={14} /> : <Annoyed size={14} />}</Switch.Thumb>
 						</Switch.Control>
 					)}

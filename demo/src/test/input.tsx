@@ -11,8 +11,9 @@ export default function InputTest() {
 			<Input placeholder="请输入" />
 
 			<InputGroup>
-				<InputGroup.Prefix>
-					<User size={18} />
+				<InputGroup.Prefix className="px-2">
+					{/* <User size={18} /> */}
+					<span>http://</span>
 				</InputGroup.Prefix>
 				<InputGroup.Input placeholder="请输入" />
 				<InputGroup.Suffix>

@@ -5,8 +5,8 @@ import { InputSuffix, type InputSuffixProps } from './input-suffix';
 import type React from 'react';
 
 type PublicInputProps = Omit<InputProps, '__isFirst' | '__isLast'>;
-type PublicPrefixProps = Omit<InputPrefixProps, '__isFirst'>;
-type PublicSuffixProps = Omit<InputSuffixProps, '__isLast'>;
+type PublicPrefixProps = Omit<InputPrefixProps, '__isFirst' | 'size'>;
+type PublicSuffixProps = Omit<InputSuffixProps, '__isLast' | 'size'>;
 
 const InputGroup = InternalInputGroup as typeof InternalInputGroup & {
 	Input: React.FC<PublicInputProps>;
