@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Switch } from 'rinex-ui';
+import { Power, Annoyed } from 'lucide-react';
 
 export default function SwitchTest() {
 	const [checked1, setChecked1] = useState(false);
@@ -16,10 +17,12 @@ export default function SwitchTest() {
 					</Switch.Control>
 				</Switch>
 
-				<Switch>
-					<Switch.Control>
-						<Switch.Thumb />
-					</Switch.Control>
+				<Switch size="lg">
+					{(checked) => (
+						<Switch.Control>
+							<Switch.Thumb>{checked ? <Power size={14} /> : <Annoyed size={14} />}</Switch.Thumb>
+						</Switch.Control>
+					)}
 				</Switch>
 
 				<Switch size={'lg'}>

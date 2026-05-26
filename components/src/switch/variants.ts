@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const switchVariants = cva(
-	'inline-flex items-center cursor-pointer rounded-full overflow-hidden',
+	'align-top inline-flex items-center cursor-pointer rounded-full overflow-hidden',
 	{
 		variants: {
 			size: {
@@ -17,7 +17,7 @@ export const switchVariants = cva(
 );
 
 export const controlVariants = cva(
-	'relative size-full flex items-center bg-gray-200 transition-colors duration-200',
+	'relative size-full flex items-center bg-gray-200 transition-colors duration-150',
 	{
 		variants: {
 			checked: {
@@ -32,7 +32,7 @@ export const controlVariants = cva(
 );
 
 export const thumbVariants = cva(
-	'mx-0.5 rounded-full bg-white transition duration-200 origin-center shadow-[0_0_6px_rgba(0,0,0,0.2)]',
+	'inline-flex items-center justify-center text-sm mx-0.5 rounded-full bg-white transition duration-150 origin-center shadow-[0_0_6px_rgba(0,0,0,0.2)]',
 	{
 		variants: {
 			size: {

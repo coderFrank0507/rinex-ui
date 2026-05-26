@@ -1,14 +1,13 @@
-import React, { memo, useState, type PropsWithChildren } from 'react';
+import React, { memo, useState } from 'react';
 import { cn } from '../_utils';
 import { switchVariants } from './variants';
-import type { VariantProps } from 'class-variance-authority';
-import { useConfigContext } from '../_utils/hooks';
 import { SwitchContext, type SwitchContextProps } from './hooks';
+import type { VariantProps } from 'class-variance-authority';
 
 type SwitchVariantProps = VariantProps<typeof switchVariants>;
 
-export interface SwitchProps
-	extends PropsWithChildren, SwitchVariantProps, Partial<SwitchContextProps> {
+export interface SwitchProps extends SwitchVariantProps, Partial<SwitchContextProps> {
+	children?: React.ReactNode | ((checked: boolean) => React.ReactNode);
 	className?: string;
 	onChange?: (checked: boolean) => void;
 }
@@ -24,7 +23,7 @@ const Switch = memo(({ children, className, size, checked = false, onChange }: S
 	return (
 		<SwitchContext.Provider value={{ checked: checkedState, size }}>
 			<label className={cn(switchVariants({ size, className }))} onClick={() => onLabelChange()}>
-				{children}
+				{typeof children === 'function' ? children(checkedState) : children}
 			</label>
 		</SwitchContext.Provider>
 	);
