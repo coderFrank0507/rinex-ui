@@ -8,10 +8,15 @@ export interface SwitchThumbProps extends PropsWithChildren {
 }
 
 const SwitchThumb = ({ children, className }: SwitchThumbProps) => {
-	const { size, checked } = useSwitchContext();
+	const { size, checked, disabled } = useSwitchContext();
 
 	return (
-		<span data-slot="switch-thumb" className={cn(thumbVariants({ checked, size, className }))}>
+		<span
+			data-slot="switch-thumb"
+			className={cn(thumbVariants({ checked, size, className }), {
+				'bg-[var(--ru-disabled-bg-color)]': disabled
+			})}
+		>
 			{children}
 		</span>
 	);

@@ -1,0 +1,82 @@
+# Switch 开关
+---
+
+### 代码演示
+
+#### 基础
+```tsx preview
+import { Switch } from 'rinex-ui';
+
+export default function App() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Switch size={'sm'}>
+        <Switch.Control>
+          <Switch.Thumb />
+        </Switch.Control>
+      </Switch>
+
+      <Switch>
+        <Switch.Control>
+          <Switch.Thumb />
+        </Switch.Control>
+      </Switch>
+
+      <Switch size={'lg'}>
+        <Switch.Control>
+          <Switch.Thumb />
+        </Switch.Control>
+      </Switch>
+    </div>
+  );
+};
+```
+
+#### 禁用
+```tsx preview
+import { Switch } from 'rinex-ui';
+
+export default function App() {
+  return (
+    <div>
+      <Switch disabled>
+        <Switch.Control>
+          <Switch.Thumb />
+        </Switch.Control>
+      </Switch>
+    </div>
+  );
+};
+```
+
+#### 图标
+```tsx preview
+import { Switch } from 'rinex-ui';
+import { Check, Power, Moon, Sun } from 'lucide-react';
+
+export default function App() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Switch checked>
+        {(checked) => (
+          <Switch.Control>
+            <Switch.Thumb>
+              {checked ? <Sun size={14} /> : <Moon size={14} />}
+            </Switch.Thumb>
+          </Switch.Control>
+        )}
+      </Switch>
+
+      <Switch checked>
+        {(checked) => (
+          <Switch.Control className={checked ? 'bg-orange-500!' : ''}>
+            <Switch.Thumb>
+              {checked ? <Check size={14} /> : <Power size={14} />}
+            </Switch.Thumb>
+          </Switch.Control>
+        )}
+      </Switch>
+    </div>
+  );
+};
+```

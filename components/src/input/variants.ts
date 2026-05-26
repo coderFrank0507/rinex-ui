@@ -10,7 +10,7 @@ export const inputVariants = cva(
 				sm: 'h-6 text-sm'
 			},
 			dark: {
-				true: 'disabled:bg-[#262626]',
+				true: 'disabled:bg-[var(--ru-disabled-bg-color)]',
 				false: 'disabled:bg-gray-100'
 			}
 		},

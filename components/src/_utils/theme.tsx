@@ -74,7 +74,7 @@ export function initGlobalThemeColor() {
 }
 
 function createGlobalVariablesContent(className: string) {
-	return `.${className}.light{--ru-text-color:#000;--ru-border-color:#d1d5dc;--ru-placeholder-color:#9da3af;--ru-disabled-color:#9ca3b0;}.${className}.dark{--ru-text-color:#fff;--ru-border-color:#9da3af;--ru-placeholder-color:#6c7280;--ru-disabled-color:#9ca3b0;}`;
+	return `.${className}.light{--ru-text-color:#000;--ru-border-color:#d1d5dc;--ru-placeholder-color:#9da3af;--ru-disabled-bg-color:#9ca3b0;--ru-disabled-text-color:#dbdbdb;}.${className}.dark{--ru-text-color:#fff;--ru-border-color:#9da3af;--ru-placeholder-color:#6c7280;--ru-disabled-bg-color:#262626;--ru-disabled-text-color:#dbdbdb;}`;
 }
 
 export function useThemeCSS(id: string, primaryColor: ThemeColors) {

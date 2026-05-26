@@ -11,7 +11,7 @@ export default function SwitchTest() {
 		<div className="p-8 space-y-6">
 			<h2 className="text-xl font-bold mb-4">Switch 组件测试</h2>
 			<div className="space-x-2">
-				<Switch size={'sm'}>
+				<Switch size={'sm'} disabled>
 					<Switch.Control>
 						<Switch.Thumb />
 					</Switch.Control>

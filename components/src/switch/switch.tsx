@@ -12,22 +12,32 @@ export interface SwitchProps extends SwitchVariantProps, Partial<SwitchContextPr
 	onChange?: (checked: boolean) => void;
 }
 
-const Switch = memo(({ children, className, size, checked = false, onChange }: SwitchProps) => {
-	const [checkedState, setCheckedState] = useState(checked);
+const Switch = memo(
+	({ children, className, size, checked = false, disabled = false, onChange }: SwitchProps) => {
+		const [checkedState, setCheckedState] = useState(checked);
 
-	const onLabelChange = () => {
-		setCheckedState(!checkedState);
-		onChange?.(!checkedState);
-	};
+		const onLabelChange = () => {
+			setCheckedState(!checkedState);
+			onChange?.(!checkedState);
+		};
 
-	return (
-		<SwitchContext.Provider value={{ checked: checkedState, size }}>
-			<label className={cn(switchVariants({ size, className }))} onClick={() => onLabelChange()}>
-				{typeof children === 'function' ? children(checkedState) : children}
-			</label>
-		</SwitchContext.Provider>
-	);
-});
+		return (
+			<SwitchContext.Provider value={{ checked: checkedState, size, disabled }}>
+				<label
+					className={cn(switchVariants({ size, className }), {
+						'cursor-not-allowed': disabled
+					})}
+					onClick={() => {
+						if (disabled) return;
+						onLabelChange();
+					}}
+				>
+					{typeof children === 'function' ? children(checkedState) : children}
+				</label>
+			</SwitchContext.Provider>
+		);
+	}
+);
 
 Switch.displayName = 'Switch';
 
