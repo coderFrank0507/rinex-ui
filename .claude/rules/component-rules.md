@@ -84,6 +84,7 @@ component-name/
 2. 涉及到子元素的 props时，通过 `interface` 继承 `PropsWithChildren` 支持子元素
 3. 扩展 `VariantProps` 支持样式变体
 4. 扩展原生 HTML 元素属性（如适用）
+5. 每个属性用 /\*\* \*/ 注释说明其作用、类型、默认值
 
 ```ts
 export interface ComponentProps

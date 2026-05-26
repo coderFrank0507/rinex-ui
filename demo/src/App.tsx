@@ -6,6 +6,7 @@ import ButtonTest from './test/button';
 // import ColorTest from './test/color';
 import CollapseTest from './test/collapse';
 import InputTest from './test/input';
+import SwitchTest from './test/switch';
 
 function App() {
 	const [color, setColor] = useState('default');
@@ -43,11 +44,12 @@ function App() {
 						</Button>
 					</div>
 					{/* <AvatarTest /> */}
-					<BadgeTest />
+					{/* <BadgeTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
-					<CollapseTest />
-					<InputTest />
+					{/* <CollapseTest /> */}
+					{/* <InputTest /> */}
+					<SwitchTest />
 				</div>
 			</ConfigProvider>
 		</div>

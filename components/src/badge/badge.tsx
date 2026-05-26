@@ -2,6 +2,7 @@ import React, { memo, type PropsWithChildren } from 'react';
 import { cn } from '../_utils';
 import { badgeContentVariants } from './variants';
 import type { VariantProps } from 'class-variance-authority';
+import { useConfigContext } from '../_utils/hooks';
 
 type BadgeVariantProps = VariantProps<typeof badgeContentVariants>;
 
@@ -31,6 +32,8 @@ const Badge = memo(
 		size,
 		...props
 	}: BadgeProps) => {
+		const { dark } = useConfigContext();
+
 		const isNumberValue = typeof value === 'number';
 		const shouldShowBadge = showDot || (value !== undefined && (showZero || value > 0));
 
@@ -42,7 +45,7 @@ const Badge = memo(
 			return (
 				<div
 					data-slot="badge-content"
-					className={cn(badgeContentVariants({ size }))}
+					className={cn(badgeContentVariants({ size }), dark ? 'border-black' : 'border-white')}
 					style={{ backgroundColor: color }}
 				>
 					{showDot ? null : displayValue}
