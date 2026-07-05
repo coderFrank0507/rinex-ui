@@ -16,11 +16,33 @@ component-name/
 
 ### 必需文件说明
 
+当一个组件是由多个子组件组成时，每个组件单独创建一个文件来实现，文件名与组件名相同。
+
 1. **index.ts** - 组件入口文件
 
-   ```ts
-   export { Component, type ComponentProps } from './component';
-   ```
+当组件只有一个tsx文件时，直接导出组件和类型。
+
+```ts
+export { Component, type ComponentProps } from './component';
+```
+
+当组件由多个tsx文件组成时，每个文件对应一个子组件。
+
+```ts
+import { Component as Root, type ComponentProps } from './collapse';
+import { ComponentA, type ComponentAProps } from './item';
+import { ComponentB, type ComponentBProps } from './trigger';
+
+const Component = Root as typeof Root & {
+	A: typeof ComponentA;
+	B: typeof ComponentB;
+};
+
+Component.A = ComponentA;
+Component.B = ComponentB;
+
+export { Component, type ComponentProps, type ComponentAProps, type ComponentBProps };
+```
 
 2. **component.tsx** - 组件实现
 

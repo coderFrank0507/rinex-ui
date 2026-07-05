@@ -7,6 +7,7 @@ import ButtonTest from './test/button';
 import CollapseTest from './test/collapse';
 import InputTest from './test/input';
 import SwitchTest from './test/switch';
+import AlertDialogTest from './test/alert-dialog';
 
 function App() {
 	const [color, setColor] = useState('default');
@@ -44,6 +45,7 @@ function App() {
 						</Button>
 					</div>
 					{/* <AvatarTest /> */}
+					<AlertDialogTest />
 					{/* <BadgeTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
