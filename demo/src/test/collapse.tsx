@@ -40,6 +40,19 @@ const CollapseTest = () => {
 						<Collapse.Panel>{item.content}</Collapse.Panel>
 					</Collapse.Item>
 				))}
+				<Collapse.Item key="5" value="5">
+					<Collapse.Trigger>What is your return policy?</Collapse.Trigger>
+					<Collapse.Panel>
+						<Collapse keepContent accordion>
+							{list.map((item) => (
+								<Collapse.Item key={item.id} value={item.id}>
+									<Collapse.Trigger>{item.title}</Collapse.Trigger>
+									<Collapse.Panel>{item.content}</Collapse.Panel>
+								</Collapse.Item>
+							))}
+						</Collapse>
+					</Collapse.Panel>
+				</Collapse.Item>
 			</Collapse>
 		</div>
 	);

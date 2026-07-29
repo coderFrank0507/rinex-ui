@@ -49,6 +49,8 @@ const CollapsePanel = memo(({ className, children, ...props }: CollapsePanelProp
 			if (el && hasExpanded) {
 				if (elRef.current) {
 					const { current: contentEl } = elRef;
+
+					// console.log('=====', el.clientHeight);
 					contentEl.style.height = `${el.clientHeight}px`;
 					setTimeout(() => {
 						contentEl.style.height = 'auto';

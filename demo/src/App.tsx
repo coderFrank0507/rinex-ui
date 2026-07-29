@@ -45,11 +45,11 @@ function App() {
 						</Button>
 					</div>
 					{/* <AvatarTest /> */}
-					<AlertDialogTest />
+					{/* <AlertDialogTest /> */}
 					{/* <BadgeTest /> */}
 					{/* <ButtonTest /> */}
 					{/* <ColorTest /> */}
-					{/* <CollapseTest /> */}
+					<CollapseTest />
 					<InputTest />
 					<SwitchTest />
 				</div>
